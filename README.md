@@ -1,5 +1,6 @@
 # M300_Services
 
+![Git](/Images%20Doku/CI_CD.jpg)
 # Einleitung allgemein
 Dieses Projekt ist der Einstieg ins Informatik-Modul 300 - Plattformübergreifende Dienste in ein Netzwerk integrieren.
 
