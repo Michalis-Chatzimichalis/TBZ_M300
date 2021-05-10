@@ -90,6 +90,6 @@ Text
 ## 40 - Container-Orchestrierung
 
 ## 50 - Add-Ons
-
+[Link zur Informieren Datei. Darin werden alle unbekannte Tools und Techniken erläutert](/50%20-%20Informieren.md) 
 
 ## 60 - Reflexion
