@@ -72,52 +72,6 @@ Für Markdown ist folgendes Cheat Sheet nützlich Cheat-Sheet
 ## 20 - Infrastruktur
 Sie können eine Dynamischen Infrastruktur-Plattform (Private Cloud) einrichten, auf der Virtuelle Maschinen auf Basis von konsistenten und wiederholten Definitionen automatisiert erstellt werden können.
 ### Packer
-#### Beschreibung
-Packer ist ein Tool zur Erstellung von Images bzw. Boxen für eine Vielzahl von Dynamic Infrastructure Platforms mittels einer Konfigurationsdatei.
-Um a Images zu erstellen, benutzt man packer build und die Konfigurationsdatei wird im JSON Format 
-
-{
-      "provisioners": [
-        {
-          "type": "shell",
-          "execute_command": "echo 'vagrant'|sudo -S sh '{{.Path}}'",
-          "override": {
-            "virtualbox-iso": {
-              "scripts": [
-                "scripts/server/base.sh",
-              ]
-            }
-          }
-        }
-      ],
-      "builders": [
-        {
-          "type": "virtualbox-iso",
-      "boot_command": [
-        " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ubuntu-preseed.cfg<wait>",
-      ],
-        }
-      ],
-      "post-processors": [
-        {
-          "type": "vagrant",
-          "override": {
-            "virtualbox": {
-              "output": "ubuntu-server-amd64-virtualbox.box"
-            }
-          }
-        }
-      ]      
-    }
-
-**Provisioning**
-Auch bei Packer steht Provisioning für Anweisungen an ein anderes Programm (z.B. eine Shell wie Bash).
-
-**Builder**
-Die Builder erstellen ein Image für eine bestimmte dynamische Infrastruktur-Plattform (wie z.B. VirtualBox).
-
-Post-processors
-Sind Bestandteile von Packer, die das Ergebnis eines Builders oder eines anderen Post-Prozessor übernehmen, um damit ein neues Artefakt zu erstellen.
 
 
 #### Installation
@@ -136,5 +90,6 @@ Text
 ## 40 - Container-Orchestrierung
 
 ## 50 - Add-Ons
+
 
 ## 60 - Reflexion
