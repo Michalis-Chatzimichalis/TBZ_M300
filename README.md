@@ -23,6 +23,7 @@ Die Aufgaben (KAP10-50) werden fortlaufend unter Projects mitsamt einem Kanban B
 1. Repo erstellt mit einem readme-File
 2. Project mit Kanban Board erstellt
 3. Lokale SSH-Key im GitHub Konto hinzugefügt.\
+\
 ![GitHub Kanban Board](/Images%20Doku/GitHub2.png)
   
 ### Git Client und Git Kommando
@@ -50,12 +51,14 @@ Die Aufgaben (KAP10-50) werden fortlaufend unter Projects mitsamt einem Kanban B
 2. Mit vagrant init [OS]/[OS_Codename] und mit vagrant up --provider virtualbox, um Virtualbox als Hoster für die VM zu nutzen
 3. Mit vagrant ssh gelange ich via ssh auf die Vagrant VM. Voraussetzung dafür ist, dass man im demselben Verzeichnis als die VM sein muss.
 4. Die VM schalte ich dann über Virtualbox aus.\
+\
 ![Vagrant VM](/Images%20Doku/Vagrant3.png)
  
 ### Apache automatisiert
 1. Im M300 Verzeichnis wechseln
 2. Mit vagrant up kann die vordefinierte VM mit dem Apache Webserver gestartet werden. Die virtuelle Maschine konfiguriere ich im Virtualbox mit einem NAT Network Adapter sowie die bestehende Ubuntu Maschine, die ich in der vorherigen Aufgabe erstellt habe. 
 3. Nun verbinde ich mich nach dem Starten mit vagrant ssh mit der VM und lese die IP-Adresse aus. Nach einem erfolgreichen ping zwischen den beiden NAT Network Maschinen öffne ich Firefox auf der Ubuntu und gehe zur IP-Adresse des Apache VM’s.\
+\
 ![Apache Zugriff](/Images%20Doku/Apache2.png)
  
 ### VS Code Extensions
@@ -71,6 +74,7 @@ Für Markdown ist folgendes Cheat Sheet nützlich Cheat-Sheet
 3. Im MessageBox kann ein Commit-Message eingegeben werden. Commit wird unter die Kategorie Commit angezeigt.
 4. Auf einem Klick auf Haken neben dem Commit kann man das nun in der Repo pushen. Beim Pop-Up auf Push klicken.
 5. Nun ist der File in der Remote Repo ersichtlich.\
+\
 ![Commit & Push im VS-Code](/Images%20Doku/VS_Code2.png)
  
 ## 20 - Infrastruktur
