@@ -8,14 +8,14 @@ Die Aufgaben (KAP10-50) werden fortlaufend unter Projects mitsamt einem Kanban B
 
 # Inhaltsverzeichnis
 
-* 10-Toolumgebung
-* 20-Infrastruktur
-* 25-Sicherheit 1
-* 30-Container
-* 35-Sicherheit 2
-* 40-Container-Orchestrierung
-* 50-Add-Ons
-* 60-Reflexion
+* 10 - Toolumgebung
+* 20 - Infrastruktur
+* 25 - Sicherheit 1
+* 30 - Container
+* 35 - Sicherheit 2
+* 40 - Container-Orchestrierung
+* 50 - Add-Ons
+* 60 - Reflexion
 
 ## 10 - Toolumgebung
 
@@ -98,7 +98,7 @@ Text
 ## 40 - Container-Orchestrierung
 
 ## 50 - Add-Ons
-[Link zur Informieren Datei.](/50%20-%20Informieren.md) 
-Darin werden alle unbekannte Tools und Techniken erläutert.
+[Informieren](/50%20-%20Informieren.md) 
+In dieser Datei werden alle wichtige Begriffe/Tools/Techniken usw. detailliert erläutert.
 
 ## 60 - Reflexion
