@@ -67,7 +67,7 @@ Nun lade ich drei Extensions im VS-Code herunter;
 * Vagrant Extension (von Marco Stanzi)
 * vscode-pdf Extension (von tomiko1207)
 
-Für Markdown ist folgendes Cheat Sheet nützlich Cheat-Sheet
+Für Markdown ist folgendes [Cheat Sheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet) nützlich.
  
 1. Damit keine Dateien der virtuellen Maschinen dem Cloud-Repository hinzugefügt werden (da Dateien zu gross), müssen diese in den Einstellungen "exkludiert" werden.
 2. Repo öffnen > Datei erstellen > Git gehen > Rechtsklick auf Eintrag unter Changes > Stage Changes
@@ -98,7 +98,7 @@ Text
 ## 40 - Container-Orchestrierung
 
 ## 50 - Add-Ons
-[Informieren](/50%20-%20Informieren.md) 
+[Informationsdatei](/50%20-%20Informieren.md) 
 In dieser Datei werden alle wichtige Begriffe/Tools/Techniken usw. detailliert erläutert.
 
 ## 60 - Reflexion
