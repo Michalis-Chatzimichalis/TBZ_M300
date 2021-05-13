@@ -27,7 +27,7 @@ Die Aufgaben (KAP10-50) werden fortlaufend unter Projects mitsamt einem Kanban B
 ![GitHub Kanban Board](/Images%20Doku/GitHub2.png)
   
 ### Git Client und Git Kommando
-1. Git/Bash exe heruntergeladen und Variabeln definiert
+1. Das Git/Bash exe herunterladen und die standardmässige Installation durchführen (Bei der Auswahl zwischen der Default Branch Name habe ich main gewählt). Nach der erfolgreicher Installation öffne ich Git/Bash in meinem Homeverzeichnis und definiere mein Namen und E-Mail-Adresse, wo für das Identifizieren meiner Commits/Pushes/Pull Requests zuständig ist
 2. Bestehende M300 Repo lokal herunterladen
 3. Im Masterbranch gewechselt und aktuellste Änderungen mit git pull geholt. Danach der Status mit git status abgefragt
 4. Ordner erstellen für das Initialisieren eines Remote-Repositories
