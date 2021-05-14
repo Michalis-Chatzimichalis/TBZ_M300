@@ -29,22 +29,26 @@ Die Aufgaben (KAP10-50) werden fortlaufend unter Projects mitsamt einem Kanban B
 ### Git Client und Git Kommando
 1. Das Git/Bash exe herunterladen und die standardmässige Installation durchführen (Bei der Auswahl zwischen der Default Branch Name habe ich main gewählt). Nach der erfolgreicher Installation öffne ich Git/Bash in meinem Homeverzeichnis und definiere mein Namen und E-Mail-Adresse, wo für das Identifizieren meiner Commits/Pushes/Pull Requests zuständig ist
 2. Bestehende M300 Repo lokal herunterladen
-3. Im Masterbranch gewechselt und aktuellste Änderungen mit git pull geholt. Danach der Status mit git status abgefragt
+3. Im Masterbranch gewechselt und aktuellste Änderungen mit `git pull` geholt. Danach der Status mit `git status` abgefragt
 4. Ordner erstellen für das Initialisieren eines Remote-Repositories
 5. Repo herunterladen und clonen. Auf der Startseite meines Repos klicke ich auf Code und kopiere den SSH Link
 6. Nachdem gehe ich im Bash Terminal und gebe dies ein. Nun erlaube ich die Verwendung von dieser Quelle und speichere zugleich der SSH-Fingerprint von der Seite github.com.
-7. Ich erstelle in Github ein kurzes Textdokument, sodass ich beim Aktualisieren mit git pull mein Terminal die neuesten Dateien in der Repo holen kann.
-8. Mit git status zeige ich mir nachdem pullen den Status an.
-9. Nun erstelle ich eine Textdatei und stage sie mit git add -A ., welche alle neuen Dateien für einen Commit und einen anschliessendem Push vorbereiten tut
+7. Ich erstelle in Github ein kurzes Textdokument, sodass ich beim Aktualisieren mit `git pull` mein Terminal die neuesten Dateien in der Repo holen kann.
+8. Mit `git status` zeige ich mir nachdem pullen den Status an.
+9. Nun erstelle ich eine Textdatei und stage sie mit `git add .` , welche alle neuen Dateien für einen Commit und einen anschliessendem Push vorbereiten tut
 10. Beim Commit habe ich die Fehlermeldung bekommen das Commit kann nicht stattfinden, da sonst meine E-Mail Adresse veröffentlicht wird.
 11. Diese Einstellung deaktivere ich im Github Einstellungen.
 12. Nun versuche ich nochmals meine Änderungen in der Remote-Repo zu pushen
-13. Die neue Datei ist nach einem Refresh im Browser ersichtlich
+13. Die neue Datei ist nach einem Refresh im Browser ersichtlich.\
+\
+![Remote-Repository ersichtlich](/Images%20Doku/Git13.png)
  
 ### VirtualBox – VM erstellen und einrichten
 1. Nun erstelle ich auf mein Windows Rechner eine Ubuntu VM mit einem 20.04 .iso Image
 2. Minimal Installation > Hostname
-3. Apache über den PacketManager installieren.
+3. Apache über den Packetmanager installieren.\
+\
+![Apache über Packetmanager](/Images%20Doku/Virtual3.png)
    
 ### Vagrant – VM erstellen
 1. Vagrant von der offiziellen Seite herunterladen und Bash öffnen. Nun erstelle ich im Modulordner ein Ordner namens MeinVagrantVM und wechsle in dem.
@@ -87,9 +91,10 @@ Text
 
 
 ### AWS Cloud
-Text
+1. Als Erstes richte ich 
 
 ## 25 - Sicherheit 1
+
 
 ## 30 - Container
 
