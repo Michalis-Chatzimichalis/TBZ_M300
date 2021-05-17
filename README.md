@@ -45,23 +45,23 @@ Die Aufgaben (KAP10-50) werden fortlaufend unter Projects mitsamt einem Kanban B
  
 ### VirtualBox – VM erstellen und einrichten
 1. Nun erstelle ich auf mein Windows Rechner eine Ubuntu VM mit einem 20.04 .iso Image
-2. Minimal Installation > Hostname
+2. Minimal Installation > Hostname eingeben
 3. Apache über den Packetmanager installieren.\
 \
 ![Apache über Packetmanager](/Images%20Doku/Virtual3.png)
    
 ### Vagrant – VM erstellen
-1. Vagrant von der offiziellen Seite herunterladen und Bash öffnen. Nun erstelle ich im Modulordner ein Ordner namens MeinVagrantVM und wechsle in dem.
-2. Mit vagrant init [OS]/[OS_Codename] und mit vagrant up --provider virtualbox, um Virtualbox als Hoster für die VM zu nutzen
-3. Mit vagrant ssh gelange ich via ssh auf die Vagrant VM. Voraussetzung dafür ist, dass man im demselben Verzeichnis als die VM sein muss.
+1. Vagrant von der offiziellen Seite herunterladen und Bash öffnen. Nun erstelle ich im Modulordner ein Ordner namens **MeinVagrantVM** und wechsle in dem.
+2. Mit `vagrant init [OS]/[OS_Codename]` und mit `vagrant up --provider virtualbox` , um Virtualbox als Hoster für die VM zu nutzen
+3. Mit `vagrant ssh` gelange ich via ssh auf die Vagrant VM. Voraussetzung dafür ist, dass man im demselben Verzeichnis als die VM sein muss.
 4. Die VM schalte ich dann über Virtualbox aus.\
 \
 ![Vagrant VM](/Images%20Doku/Vagrant3.png)
  
 ### Apache automatisiert
-1. Im M300 Verzeichnis wechseln
-2. Mit vagrant up kann die vordefinierte VM mit dem Apache Webserver gestartet werden. Die virtuelle Maschine konfiguriere ich im Virtualbox mit einem NAT Network Adapter sowie die bestehende Ubuntu Maschine, die ich in der vorherigen Aufgabe erstellt habe. 
-3. Nun verbinde ich mich nach dem Starten mit vagrant ssh mit der VM und lese die IP-Adresse aus. Nach einem erfolgreichen ping zwischen den beiden NAT Network Maschinen öffne ich Firefox auf der Ubuntu und gehe zur IP-Adresse des Apache VM’s.\
+1. Im **M300 Verzeichnis** wechseln
+2. Mit `vagrant up` kann die vordefinierte VM mit dem Apache Webserver gestartet werden. Die virtuelle Maschine konfiguriere ich im Virtualbox mit einem NAT Network Adapter sowie die bestehende Ubuntu Maschine, die ich in der vorherigen Aufgabe erstellt habe. 
+3. Nun verbinde ich mich nach dem Starten mit `vagrant ssh` mit der VM und lese die IP-Adresse aus. Nach einem erfolgreichen `ping` zwischen den beiden NAT Network Maschinen öffne ich Firefox auf der Ubuntu und gehe zur IP-Adresse des Apache VM’s.\
 \
 ![Apache Zugriff](/Images%20Doku/Apache2.png)
  
@@ -103,7 +103,6 @@ Text
 ## 40 - Container-Orchestrierung
 
 ## 50 - Add-Ons
-[Informationsdatei](/50%20-%20Informieren.md) 
-In dieser Datei werden alle wichtige Begriffe/Tools/Techniken usw. detailliert erläutert.
+In dieser [Datei](/50%20-%20Informieren.md) werden alle wichtige Begriffe (wie IaC, Cloud Computing, IaaS), Tools (Vagrant, Packer, AWS Cloud usw.) und Techniken (wie CI/CD, TDD) usw. detailliert erklärt.
 
 ## 60 - Reflexion
