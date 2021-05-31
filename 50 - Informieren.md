@@ -64,6 +64,12 @@ Vagrant.configure("2") do |config|
 end
 ```
 Mit dieser Konfiguration wird ein Ubuntu 16.04 Image genommen und Apache vorinstalliert. Zusätzlich wird auf dem Host-Laptop der Port 4567 für den Guest-Webserver weitergeleitet, sodass auf dem Host nun `http://127.0.0.1:4567/` eingegeben werden kann und auf dem Webserver zugegriffen werden.
+
+Das Konzept für das Füllen des Vagrantfiles stelle ich mir wie folgt vor. 
+1. Das beschreibende für die VM `vm.define do |var|`
+2. Die Konfiguration, die in der VM passieren müssen (Box, hostname, Portforwarding, Static IP, Shell Files, usw.)
+3. Die Änderungen, die man in Virtualbox vornehmen müssen (Memory, Anzeigename usw.) 
+
 ### Provisioning
 Provisioning bedeutet bei Vagrant, Anweisung an ein anderes Programm zu geben. In den meisten Fällen an eine Shell, wie Bash. Die nachfolgenden Zeilen installieren den Web Server Apache.
 
