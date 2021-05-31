@@ -5,7 +5,7 @@ Vagrant.configure("2") do |config|
         db.vm.network "private_network", ip: "192.168.100.2"
         db.vm.network "forwarded_port", guest: 3306, host: 33066
         db.vm.provision "shell", path: "db_config.sh"
-        db.vm.provider = "virtualbox" do |vb|
+        db.vm.provider "virtualbox" do |vb|
             vb.memory = "1024"           
         end
     end
@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
         web.vm.network "forwarded_port", guest: 80, host: 8080
         web.vm.syncedfolders ".", "/var/www/html"
         web.vm.provison "shell", path: "web_config.sh"
-        web.vm.provider = "virtualbox" do |vb|
+        web.vm.provider "virtualbox" do |vb|
             vb.memory = "2048"       
         end
     end
