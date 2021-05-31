@@ -10,7 +10,7 @@ Einsatzzwecken
 
 | Vorteile | Nachteile |
 | -------- | --------- |
-| Das flexibelste Cloud-Computing-Modell | Sicherheitsbedrohungen können immer noch vom Host oder anderen virtuellen Maschinen (VMs) ausgehen
+| Das flexibelste Cloud-Computing-Modell | Sicherheitsbedrohungen können immer noch vom Host oder anderen virtuellen Maschinen (VMs) ausgehen |
 | Einfache, automatisierte Bereitstellung von Speicher, Netzwerken, Servern und Rechenleistung | Text	
 | Hardware-Käufe können verbrauchsabhängig erfolgen	| Text
 | Volle Kontrolle über die Infrastruktur | Text
@@ -153,3 +153,17 @@ Die Builder erstellen ein Image für eine bestimmte dynamische Infrastruktur-Pla
 **Post-processors**\
 Um ein neues Artefakt/Instanz zu erstellen, werden Ergebnisse auf Builders oder Post-Prozessor geholt.
 
+---------
+## 04 Kubernetes
+---------
+
+Kubernetes ist ein Open-Source Programm 
+
+Der Verlauf ist in etwa so;
+
+K8s -> Nodes -> Pods -> Container
+
+Node ist i.d.R eine VM (master)
+ca. 100 Pods pro Node 
+Container in den Pods
+Um Updaten nimmt man ein Node vom Cluster, ein anderer nimmt die Aufgabe, aktualisiert den und fügt dem am Cluster neu hinzu
