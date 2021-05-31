@@ -1,0 +1,18 @@
+Vagrant.configure("2") do |config|
+    config.vm.define "docker" do |docker|
+        docker.vm.box = "ubuntu/focal64"
+        docker.vm.hostname = "docker01"
+        docker.vm.network "private_network", ip: "192.168.50.2"
+        docker.vm.network "forwarded_port", guest: 3306, host: 33066
+        docker.vm.syncedfolders "./docker", "/"
+        docker.vm.provision "shell", path: "install_docker_plex.sh"
+        docker.vm.provider "virtualbox" do |vb|
+            vb.customize [
+                "modifyvm", :id,
+                "--memory", 1024,
+                "--cpus", 1,
+                "--name", "M300_LB1_Docker_Plex",
+            ]
+        end
+    end
+end

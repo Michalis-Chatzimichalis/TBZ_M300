@@ -1,0 +1,67 @@
+version: '2'
+services:
+ plex:
+   container_name: plex
+   image: plexinc/pms-docker
+   restart: unless-stopped
+   ports:
+     - 32400:32400/tcp
+     - 3005:3005/tcp
+     - 8324:8324/tcp
+     - 32469:32469/tcp
+     - 1900:1900/udp
+     - 32410:32410/udp
+     - 32412:32412/udp
+     - 32413:32413/udp
+     - 32414:32414/udp
+   environment:
+     - TZ=Europe/UTC
+     #- PLEX_CLAIM=<claimToken>
+     #- ADVERTISE_IP=http://<hostIPAddress>:32400/
+   hostname: Vagrant_VM
+   volumes:
+     - /path/to/config:/config
+     - /path/to/transcode:/transcode
+     - /path/to/data/:/data
+ 
+ sonarr: 
+    container_name: sonarr
+    image: linuxserver/sonarr
+    restart: unless-stopped
+    ports:
+        - 8989:8989/tcp
+    environment:
+        - TZ=Europe/UTC
+        - PGID=1000
+        - PUID=1000
+    volumes:
+        - /path/to/data:/config
+        - /path/to/tvseries:/tv #optional
+        - /path/to/downloadclient-downloads:/downloads #optional
+ 
+ radarr: 
+    container_name: radarr
+    image: linuxserver/radarr
+    restart: unless-stopped
+    ports:
+        - 7878:7878/tcp
+    environment:
+        - TZ=Europe/UTC
+        - PGID=1000
+        - PUID=1000
+    volumes:
+        - /path/to/data:/config
+        - /path/to/movies:/movies #optional
+        - /path/to/downloadclient-downloads:/downloads #optional
+ 
+ portainer:
+    image: portainer/portainer
+    container_name: portainer
+    restart: unless-stopped
+    command: -H unix:///var/run/docker.sock
+    volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+        - /opt/portainer/data:/data
+    network_mode: bridge
+    ports:
+        - 9000:9000
