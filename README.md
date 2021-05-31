@@ -93,6 +93,11 @@ Text
 ### AWS Cloud
 1. Als Erstes richte ich 
 
+### Beispiele
+Für den ersten Beispiel werde ich eine DB mit einem phpmyadmin GUI via Vagrantfile einrichten. Die benötigten Dateien findet man [hier](20%20-%20Beispielsaufgabe%20DB/).
+
+
+
 ## 25 - Sicherheit 1
 
 
@@ -103,6 +108,6 @@ Text
 ## 40 - Container-Orchestrierung
 
 ## 50 - Add-Ons
-In dieser [Datei](/50%20-%20Informieren.md) werden alle wichtige Begriffe (wie IaC, Cloud Computing, IaaS), Tools (Vagrant, Packer, AWS Cloud usw.) und Techniken (wie CI/CD, TDD) usw. detailliert erklärt.
+In dieser [Datei](/50%20-%20Informieren.md) werden alle wichtige Begriffe (wie IaC, Cloud Computing, IaaS), Tools (Vagrant, Packer, AWS Cloud usw.) und Techniken (wie CI/CD, TDD) usw. detailliert erklärt [test](/).
 
 ## 60 - Reflexion

@@ -63,6 +63,7 @@ Vagrant.configure("2") do |config|
         web.vm.network "public_network", bridge: "en0: WLAN (AirPort)"
 end
 ```
+Mit dieser Konfiguration wird ein Ubuntu 16.04 Image genommen und Apache vorinstalliert. Zusätzlich wird auf dem Host-Laptop der Port 4567 für den Guest-Webserver weitergeleitet, sodass auf dem Host nun `http://127.0.0.1:4567/` eingegeben werden kann und auf dem Webserver zugegriffen werden.
 ### Provisioning
 Provisioning bedeutet bei Vagrant, Anweisung an ein anderes Programm zu geben. In den meisten Fällen an eine Shell, wie Bash. Die nachfolgenden Zeilen installieren den Web Server Apache.
 
@@ -87,8 +88,21 @@ Synchronisierte Ordner ermöglichen es der VM auf Verzeichnisse des Host-Systems
         config.vm.synced_folder ".", "/var/www/html"  
     end
 ```
-**Wichtig**: Standardmässig wird das aktuelle Vagrantfile-Verzeichnis in der VM unter /vagrant gemountet.
+**Wichtig**: Standardmässig wird das aktuelle Vagrantfile-Verzeichnis in der VM unter /vagrant gemountet. Mit `vagrant reload --provision` kann man die Vagrant-VM mit allfällige Provision-Änderungen neu starten.
 
+### Vagrant Share
+Vagrant Share ist ein Plugin, mit dem man seine Vagrant-Umgebung für jeden auf der Welt mit einer Internetverbindung freigeben kann. Es gibt Einem eine URL, die von jedem Gerät auf der Welt, das mit dem Internet verbunden ist, direkt zu der eigenen Vagrant-Umgebung leitet.
+
+#### Einrichtung
+Vagrant benötigt ngrok, also wenn nicht vorhanden bitte ngrok wie [folgt installieren](https://ngrok.com/download).
+
+Nachdem ngrok erfolgreich installiert ist, kann vagrant share mit `vagrant plugin install vagrant-share` installiert werden
+
+Um die eigene Umgebung zu **sharen** gibt man `vagrant share` ein und erhält eine URL. Nun können die Dateien im gesyncten Ordner angepasst werden und die Änderungen sind unter derselbe URL nach einem Refresh einsichtlich.
+
+Mit `^C` beendet man das **sharen**.
+
+**Wichtig**: Vagrant Share sollte man in Dev- oder QA (Quality Assurance)-Umgebungen verwendet werden und ja nicht in produktive Umgebungen.
 
 --------------
 ## 03 - Packer

@@ -1,0 +1,11 @@
+Vagrant.configure("2") do |config|
+    config.vm.define :db do |db|
+        db.vm.box = "ubuntu/xenial64"
+        db.vm.hostname = "srv_db"
+        db.vm.provision "shell", path: "Install_DB.sh"
+        db.vm.network :forwarded_port, guest: 80, host: 8080, :private_network ip: "192.168.0.20" auto_config: false
+        db.vm.provider "virtualbox" do |v|
+            v.name = "KAP20_DB" 
+        end
+    end
+end
