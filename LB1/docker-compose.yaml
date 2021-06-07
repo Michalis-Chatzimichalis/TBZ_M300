@@ -16,8 +16,8 @@ services:
      - 32414:32414/udp
    environment:
      - TZ=Europe/UTC
-     #- PLEX_CLAIM=<claimToken>
-     #- ADVERTISE_IP=http://<hostIPAddress>:32400/
+     - PLEX_CLAIM=Z4szTvSYzN7tfjEsUyDz
+     - ADVERTISE_IP=http://192.168.50.2:32400/
    hostname: Vagrant_VM
    volumes:
      - /path/to/config:/config
@@ -55,13 +55,14 @@ services:
         - /path/to/downloadclient-downloads:/downloads #optional
  
  portainer:
-    image: portainer/portainer
+    image: portainer/portainer-ce
     container_name: portainer
     restart: unless-stopped
+    ports:
+        - 9000:9000
     command: -H unix:///var/run/docker.sock
     volumes:
         - /var/run/docker.sock:/var/run/docker.sock
         - /opt/portainer/data:/data
     network_mode: bridge
-    ports:
-        - 9000:9000
+    

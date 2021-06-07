@@ -108,6 +108,6 @@ Für den ersten Beispiel werde ich eine DB mit einem phpmyadmin GUI via Vagrantf
 ## 40 - Container-Orchestrierung
 
 ## 50 - Add-Ons
-In dieser [Datei](/50%20-%20Informieren.md) werden alle wichtige Begriffe (wie IaC, Cloud Computing, IaaS), Tools (Vagrant, Packer, AWS Cloud usw.) und Techniken (wie CI/CD, TDD) usw. detailliert erklärt [test](/).
+In dieser [Datei](/50%20-%20Informieren.md) werden alle wichtige Begriffe (wie IaC, Cloud Computing, IaaS), Tools (Vagrant, Packer, AWS Cloud usw.) und Techniken (wie CI/CD, TDD) usw. detailliert erklärt.
 
 ## 60 - Reflexion

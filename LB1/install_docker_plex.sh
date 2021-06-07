@@ -8,4 +8,5 @@ apt-get update
 #Install from Docker Repo and Install Docker
 apt-cache policy docker-ce
 sudo apt install docker-ce
-
+#docker-compose up
+docker-compose up -d
