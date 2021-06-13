@@ -43,7 +43,12 @@ Beispiele dafür sind Google Workspace, Dropbox, Salesforce, Cisco WebEx
 | Text | Text |
 
 -------
-## 02 - Vagrant
+## 02 - Git
+-------
+Einige Cheat-Sheets zu Git gibt es [hier](/Images%20Doku/Git_Cheat_Sheet.png)
+
+-------
+## 03 - Vagrant
 -------
 ### Boxen
 Boxen sind bei Vagrant vorkonfigurierte VMs (Vorlagen). Diese sollen den Prozess der Softwareverteilung und der Entwicklung beschleunigen. Jede Box, die von dem Nutzer benutzt wurde, wird auf dem Computer gespeichert und muss so nicht wieder aus dem Internet geladen werden.
@@ -111,7 +116,7 @@ Mit `^C` beendet man das **sharen**.
 **Wichtig**: Vagrant Share sollte man in Dev- oder QA (Quality Assurance)-Umgebungen verwendet werden und ja nicht in produktive Umgebungen.
 
 --------------
-## 03 - Packer
+## 04 - Packer
 ---------------
 Packer ist ein Tool zur **Erstellung von Images** bzw. Boxen für eine Vielzahl von Dynamic Infrastructure Platforms mittels einer Konfigurationsdatei.
 Diese Konfigurationsdatei wird im JSON Format geschrieben und die Erstellung eines darauffolgenden Images wird mit `packer build` angelegt.
@@ -160,7 +165,7 @@ Die Builder erstellen ein Image für eine bestimmte dynamische Infrastruktur-Pla
 Um ein neues Artefakt/Instanz zu erstellen, werden Ergebnisse auf Builders oder Post-Prozessor geholt.
 
 ---------
-## 04 Kubernetes
+## 05 - Kubernetes
 ---------
 
 Kubernetes ist ein Open-Source Programm 

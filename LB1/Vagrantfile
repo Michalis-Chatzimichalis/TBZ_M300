@@ -2,7 +2,20 @@ Vagrant.configure("2") do |config|
     config.vm.define "docker" do |docker|
         docker.vm.box = "ubuntu/focal64"
         docker.vm.hostname = "docker01"
-        docker.vm.network "private_network", ip: "192.168.50.2", auto_config: false
+        docker.vm.network "private_network", ip: "192.168.50.2"
+        docker.vm.network "forwarded_port", guest: 8989, host: 8989
+        docker.vm.network "forwarded_port", guest: 7878, host: 7878
+        docker.vm.network "forwarded_port", guest: 9000, host: 9000
+        docker.vm.network "forwarded_port", guest: 8000, host: 8000
+        docker.vm.network "forwarded_port", guest: 32400, host: 32400
+        docker.vm.network "forwarded_port", guest: 3005, host: 3005
+        docker.vm.network "forwarded_port", guest: 8324, host: 8324
+        docker.vm.network "forwarded_port", guest: 32469, host: 32469
+        docker.vm.network "forwarded_port", guest: 1900, host: 1900, protocol: "udp"
+        docker.vm.network "forwarded_port", guest: 32410, host: 32410, protocol: "udp"
+        docker.vm.network "forwarded_port", guest: 32412, host: 32412, protocol: "udp"
+        docker.vm.network "forwarded_port", guest: 32413, host: 32413, protocol: "udp"
+        docker.vm.network "forwarded_port", guest: 32414, host: 32414, protocol: "udp"
         docker.vm.provision "shell", path: "install_docker_plex.sh"
         docker.vm.provider "virtualbox" do |vb|
             vb.customize [

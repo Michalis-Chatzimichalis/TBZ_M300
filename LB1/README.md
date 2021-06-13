@@ -12,7 +12,7 @@ In der LB1 werde ich Docker verwenden, um Plex einzurichten und mittels Sonarr/R
 8. Quellen
 
 ## Technische Übersicht
-![Bild von der Aufstellung](/Technische_Übersicht.drawio)
+![Bild von der Aufstellung](/Bilder/Technis)
 
 
 ## Voraussetzungen
@@ -30,14 +30,27 @@ In der LB1 werde ich Docker verwenden, um Plex einzurichten und mittels Sonarr/R
 
 ## Deklaritiver Aufbau
 ### Vagrantfile
-Das Vagrantfile sieht wie folgt aus
+Das Vagrantfile sieht wie folgt aus. Am Anfang wird die Variable für das Definieren der VM-Einstellungen angegeben. Mit docker.vm.xxxxx
 
 ```ruby
 Vagrant.configure("2") do |config|
     config.vm.define "docker" do |docker|
         docker.vm.box = "ubuntu/focal64"
         docker.vm.hostname = "docker01"
-        docker.vm.network "private_network", ip: "192.168.50.2", auto_config: false
+        docker.vm.network "private_network", ip: "192.168.50.2"
+        docker.vm.network "forwarded_port", guest: 8989, host: 8989
+        docker.vm.network "forwarded_port", guest: 7878, host: 7878
+        docker.vm.network "forwarded_port", guest: 9000, host: 9000
+        docker.vm.network "forwarded_port", guest: 8000, host: 8000
+        docker.vm.network "forwarded_port", guest: 32400, host: 32400
+        docker.vm.network "forwarded_port", guest: 3005, host: 3005
+        docker.vm.network "forwarded_port", guest: 8324, host: 8324
+        docker.vm.network "forwarded_port", guest: 32469, host: 32469
+        docker.vm.network "forwarded_port", guest: 1900, host: 1900, protocol: "udp"
+        docker.vm.network "forwarded_port", guest: 32410, host: 32410, protocol: "udp"
+        docker.vm.network "forwarded_port", guest: 32412, host: 32412, protocol: "udp"
+        docker.vm.network "forwarded_port", guest: 32413, host: 32413, protocol: "udp"
+        docker.vm.network "forwarded_port", guest: 32414, host: 32414, protocol: "udp"
         docker.vm.provision "shell", path: "install_docker_plex.sh"
         docker.vm.provider "virtualbox" do |vb|
             vb.customize [
@@ -52,27 +65,33 @@ end
 ```
 
 ### Bash-File um Docker zu installieren
-Nachdem das OS geladen wird, wie 
+Nachdem die VM und die Netzwerkkonfigurationen eingerichtet werden, wird dieses Shell-Script eingespiest, welches das System allererstens aktualisiert und danach die nötigen Komponenten für die Docker Engine Installation ladet. Zuletzt fügt es den automatisch erstellten Vagrant User in der Docker-Gruppe sodass der Vagrant-User auch ohne sudo Präfix die Docker-Kommandos ausführen kann. Am Schluss wechselts im gemounten Verzeichnis und startet die 4 Container, die im untenstehenden yaml-File beschrieben sind.
 
 ```shell
 apt-get update
+apt-get upgrade -y
 #Add Repository and GPG Key. Add Repo to sources
-apt install apt-transport-https ca-certificates curl software-properties-common
+apt install apt-transport-https ca-certificates curl software-properties-common -y
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
 #Update
 apt-get update
+apt-get upgrade -y
 #Install from Docker Repo and Install Docker
 apt-cache policy docker-ce
-sudo apt install docker-ce
+apt install docker-ce -y
+apt install docker-compose -y
+usermod -aG docker vagrant
+#docker-compose up
+cd /vagrant
+docker-compose up -d
 ```
 
+### docker-compose.yml File
+Im Docker-Compose File werden die 3 Services und zugleich Portainer eingerichtet und mit dem docker-compose up -d Befehl gestartet.
 
-### docker-compose.yaml File
-Im Docker-Compose File werden die 3 Services und zugleich Portainer 
-
-```yaml
-version: '2'
+```yml
+version: '3'
 services:
  plex:
    container_name: plex
@@ -94,9 +113,9 @@ services:
      - ADVERTISE_IP=http://192.168.50.2:32400/
    hostname: Vagrant_VM
    volumes:
-     - /path/to/config:/config
-     - /path/to/transcode:/transcode
-     - /path/to/data/:/data
+     - /config/plex:/config
+     - /media:/data
+     - /config/plex/transcode
  
  sonarr: 
     container_name: sonarr
@@ -109,9 +128,9 @@ services:
         - PGID=1000
         - PUID=1000
     volumes:
-        - /path/to/data:/config
-        - /path/to/tvseries:/tv #optional
-        - /path/to/downloadclient-downloads:/downloads #optional
+        - /config/sonarr:/config
+        - /media/series:/tv
+        - /media/downloads:/downloads
  
  radarr: 
     container_name: radarr
@@ -124,9 +143,9 @@ services:
         - PGID=1000
         - PUID=1000
     volumes:
-        - /path/to/data:/config
-        - /path/to/movies:/movies #optional
-        - /path/to/downloadclient-downloads:/downloads #optional
+        - /config/radarr:/config
+        - /media/movies:/movies
+        - /media/downloads:/downloads
  
  portainer:
     image: portainer/portainer-ce
@@ -134,22 +153,24 @@ services:
     restart: unless-stopped
     ports:
         - 9000:9000
-    command: -H unix:///var/run/docker.sock
+    #command: -H unix:///var/run/docker.sock
     volumes:
-        - /var/run/docker.sock:/var/run/docker.sock
-        - /opt/portainer/data:/data
+        - /portainer/data:/data
     network_mode: bridge
 ```
 
+Die Dienste sind demnach unter localhost:32400 für Plex, für radarr localhost:7878 usw. 
 
 ## Sicherheit
+Die Ports die weitergeleitet werden sollen, sind dieselbe, die der Docker Daemon weiterleiten tut und zwar sind es die 9
 
 
 ## Testing
+Der erster Zugriff auf die Dienste habe ich erfolgreich nach der Portweiterleitung ausgestestet. Die URL-Adresse wäre localhost:[Port]. Dieses [Video]](/LB1/media/downloads/Erster_Zugriff_auf_Dienste.mp4) stellt den Zugriff dar.
 
 
 ## Bewertungsmatrix
-In der nachstehende Tabelle wird das Bewertungsmatrix für die LB1 
+In der nachstehende Tabelle wird das Bewertungsmatrix für die LB1.
 
 | Kriterium                                                                             | Erfüllt |
 | ------------------------------------------------------------------------------------- | ------- |
@@ -163,3 +184,4 @@ In der nachstehende Tabelle wird das Bewertungsmatrix für die LB1
 
 
 ## Quellen
+Die config.xml-Files in den Verzeichnissen habe ich von [diesem GitHub](https://github.com/shaharyarahmad/media-setup)
