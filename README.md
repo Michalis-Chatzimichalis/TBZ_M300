@@ -1,6 +1,7 @@
 # M300_Services
 
-![Git](/Bilder%20Doku/CI_CD.jpg)
+![Git](/Bilder%20Doku/Cover_Readme.png)
+Quelle: [Medium-Artikel](https://medium.com/analytics-vidhya/git-101-cdf8d18b895e)
 # Einleitung allgemein
 Dieses Projekt ist der Einstieg ins Informatik-Modul 300 - Plattformübergreifende Dienste in ein Netzwerk integrieren.
 
