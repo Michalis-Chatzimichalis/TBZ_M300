@@ -12,7 +12,7 @@ In der LB1 werde ich Docker verwenden, um Plex einzurichten und mittels Sonarr/R
 8. Quellen
 
 ## Technische Übersicht
-![Bild von der Aufstellung](/Bilder/Technis)
+![Bild von der Aufstellung](/LB1/Bilder/Technische_Übersicht.png)
 
 
 ## Voraussetzungen
@@ -159,7 +159,7 @@ services:
     network_mode: bridge
 ```
 
-Die Dienste sind demnach unter localhost:32400 für Plex, für radarr localhost:7878 usw. 
+Die Dienste sind demnach unter localhost:32400 für Plex, für radarr localhost:7878 usw. erreichbar.
 
 ## Sicherheit
 Die Ports die weitergeleitet werden sollen, sind dieselbe, die der Docker Daemon weiterleiten tut und zwar sind es die 9
@@ -172,16 +172,18 @@ Der erster Zugriff auf die Dienste habe ich erfolgreich nach der Portweiterleitu
 ## Bewertungsmatrix
 In der nachstehende Tabelle wird das Bewertungsmatrix für die LB1.
 
-| Kriterium                                                                             | Erfüllt |
-| ------------------------------------------------------------------------------------- | ------- |
-| Setup Umgebung, Lernumgebung, Tools (6P)                                              | Ja      |
-| Technische Doku (Struktur, Tiefe, Gestaltung, Formatierung, Nachvollziehbarkeit) (6P) |         |
-| Entwicklung des Repositories (Regelmässigkeit und Umfang der Updates/Commits) (3P)    |         |
-| Grund-Service, Funktionalität, Dokumentation (Eigen- oder Ergänzungsleistung!) (3P)   |         |
-| Ergänzende Services, Funktionalität, Dokumentation (3P)                               |         |
-| Engagement, Haltung, Professionalität, Kommunikation (2P)                             |         |
-| Präsentation, Live-Demo & Quellenangaben (2P)                                         |         |
+| Kriterium                                                                             | Erfüllt                                                         |
+| ------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| Setup Umgebung, Lernumgebung, Tools (6P)                                              | Ja                                                              |
+| Technische Doku (Struktur, Tiefe, Gestaltung, Formatierung, Nachvollziehbarkeit) (6P) |                                                                 |
+| Entwicklung des Repositories (Regelmässigkeit und Umfang der Updates/Commits) (3P)    | Ja, 41 Commits über 1 Monat                                     |
+| Grund-Service, Funktionalität, Dokumentation (Eigen- oder Ergänzungsleistung!) (3P)   | Ja, mit Docker Container und Services (KEIN Vorhander Beispiel) |
+| Ergänzende Services, Funktionalität, Dokumentation (3P)                               |                                                                 |
+| Engagement, Haltung, Professionalität, Kommunikation (2P)                             | IMO andere geholfen,                                            |
+| Präsentation, Live-Demo & Quellenangaben (2P)                                         |                                                                 |
 
+## Reflexion
+Meiner Meinung nach war diese LB1 eine gute Übung für mich, da ich mich im Vorhin nicht so wirklick mit Vagrant ausgekennt habe. Nun könnte ich eine automatisierte Instanz 4 verschiedener Docker Containers zustande bringen, was mich sehr motiviert. Die Dokumentation mit Git war auch einer interessanter Aspekt und konnte mir jedenfalls wichtige Sachen entnehmen. Eine Sache war, dass GitHub eine max. Dateigrösse auf 100MB setzt und wenn man das nicht beachtet und einige lokale Commits mit einem grösseren File absichert und den File danach löscht, ist der Push zur Remote-Repository sehr schwierig. Mit git revert/checkout und das git LFS Modul kam ich nicht weiter und müsste meine Remote-Repo nochmals in einem anderen lokalen Verzeichnis pullen und dort denn Stand weitertreiben.
 
 ## Quellen
 Die config.xml-Files in den Verzeichnissen habe ich von [diesem GitHub](https://github.com/shaharyarahmad/media-setup)

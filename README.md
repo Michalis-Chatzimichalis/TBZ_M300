@@ -1,6 +1,6 @@
 # M300_Services
 
-![Git](/Images%20Doku/CI_CD.jpg)
+![Git](/Bilder%20Doku/CI_CD.jpg)
 # Einleitung allgemein
 Dieses Projekt ist der Einstieg ins Informatik-Modul 300 - Plattformübergreifende Dienste in ein Netzwerk integrieren.
 
@@ -24,7 +24,7 @@ Die Aufgaben (KAP10-50) werden fortlaufend unter Projects mitsamt einem Kanban B
 2. Project mit Kanban Board erstellt
 3. Lokale SSH-Key im GitHub Konto hinzugefügt.\
 \
-![GitHub Kanban Board](/Images%20Doku/GitHub2.png)
+![GitHub Kanban Board](/Bilder%20Doku/GitHub2.png)
   
 ### Git Client und Git Kommando
 1. Das Git/Bash exe herunterladen und die standardmässige Installation durchführen (Bei der Auswahl zwischen der Default Branch Name habe ich main gewählt). Nach der erfolgreicher Installation öffne ich Git/Bash in meinem Homeverzeichnis und definiere mein Namen und E-Mail-Adresse, wo für das Identifizieren meiner Commits/Pushes/Pull Requests zuständig ist
@@ -41,14 +41,14 @@ Die Aufgaben (KAP10-50) werden fortlaufend unter Projects mitsamt einem Kanban B
 12. Nun versuche ich nochmals meine Änderungen in der Remote-Repo zu pushen
 13. Die neue Datei ist nach einem Refresh im Browser ersichtlich.\
 \
-![Remote-Repository ersichtlich](/Images%20Doku/Git13.png)
+![Remote-Repository ersichtlich](/Bilder%20Doku/Git13.png)
  
 ### VirtualBox – VM erstellen und einrichten
 1. Nun erstelle ich auf mein Windows Rechner eine Ubuntu VM mit einem 20.04 .iso Image
 2. Minimal Installation > Hostname eingeben
 3. Apache über den Packetmanager installieren.\
 \
-![Apache über Packetmanager](/Images%20Doku/Virtual3.png)
+![Apache über Packetmanager](/Bilder%20Doku/Virtual3.png)
    
 ### Vagrant – VM erstellen
 1. Vagrant von der offiziellen Seite herunterladen und Bash öffnen. Nun erstelle ich im Modulordner ein Ordner namens **MeinVagrantVM** und wechsle in dem.
@@ -56,14 +56,14 @@ Die Aufgaben (KAP10-50) werden fortlaufend unter Projects mitsamt einem Kanban B
 3. Mit `vagrant ssh` gelange ich via ssh auf die Vagrant VM. Voraussetzung dafür ist, dass man im demselben Verzeichnis als die VM sein muss.
 4. Die VM schalte ich dann über Virtualbox aus.\
 \
-![Vagrant VM](/Images%20Doku/Vagrant3.png)
+![Vagrant VM](/Bilder%20Doku/Vagrant3.png)
  
 ### Apache automatisiert
 1. Im **M300 Verzeichnis** wechseln
 2. Mit `vagrant up` kann die vordefinierte VM mit dem Apache Webserver gestartet werden. Die virtuelle Maschine konfiguriere ich im Virtualbox mit einem NAT Network Adapter sowie die bestehende Ubuntu Maschine, die ich in der vorherigen Aufgabe erstellt habe. 
 3. Nun verbinde ich mich nach dem Starten mit `vagrant ssh` mit der VM und lese die IP-Adresse aus. Nach einem erfolgreichen `ping` zwischen den beiden NAT Network Maschinen öffne ich Firefox auf der Ubuntu und gehe zur IP-Adresse des Apache VM’s.\
 \
-![Apache Zugriff](/Images%20Doku/Apache2.png)
+![Apache Zugriff](/Bilder%20Doku/Apache2.png)
  
 ### VS Code Extensions
 Nun lade ich drei Extensions im VS-Code herunter;
@@ -79,7 +79,7 @@ Für Markdown ist folgendes [Cheat Sheet](https://github.com/adam-p/markdown-her
 4. Auf einem Klick auf Haken neben dem Commit kann man das nun in der Repo pushen. Beim Pop-Up auf Push klicken.
 5. Nun ist der File in der Remote Repo ersichtlich.\
 \
-![Commit & Push im VS-Code](/Images%20Doku/VS_Code2.png)
+![Commit & Push im VS-Code](/Bilder%20Doku/VS_Code2.png)
  
 ## 20 - Infrastruktur
 Sie können eine Dynamischen Infrastruktur-Plattform (Private Cloud) einrichten, auf der Virtuelle Maschinen auf Basis von konsistenten und wiederholten Definitionen automatisiert erstellt werden können.
