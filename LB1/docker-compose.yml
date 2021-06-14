@@ -15,7 +15,7 @@ services:
      - 32413:32413/udp
      - 32414:32414/udp
    environment:
-     - TZ=Europe/UTC
+     - TZ=Europe/Zurich
      - PLEX_CLAIM=Z4szTvSYzN7tfjEsUyDz
      - ADVERTISE_IP=http://192.168.50.2:32400/
    hostname: Vagrant_VM
@@ -31,7 +31,7 @@ services:
     ports:
         - 8989:8989/tcp
     environment:
-        - TZ=Europe/UTC
+        - TZ=Europe/Zurich
         - PGID=1000
         - PUID=1000
     volumes:
@@ -46,7 +46,7 @@ services:
     ports:
         - 7878:7878/tcp
     environment:
-        - TZ=Europe/UTC
+        - TZ=Europe/Zurich
         - PGID=1000
         - PUID=1000
     volumes:
@@ -60,9 +60,9 @@ services:
     restart: unless-stopped
     ports:
         - 9000:9000
-    #command:
-    #   - -H unix:///var/run/docker.sock
+    command: -H unix:///var/run/docker.sock
     volumes:
         - /portainer/data:/data
+        - /var/run/docker.sock:/var/run/docker.sock
     network_mode: bridge
     

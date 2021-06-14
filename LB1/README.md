@@ -112,7 +112,7 @@ docker-compose up -d
 ```
 
 ### 4.3 - docker-compose.yml File
-Im Docker-Compose File werden die 3 Services und zugleich Portainer eingerichtet und mit dem docker-compose up -d Befehl gestartet. Die Container werden der Reihe nach gestartet, bzw. das definierte Image wird vom Docker Hub geholt und danach mit den nötigen Ports und Environment-Variabeln gestartet.
+Im Docker-Compose File werden die 3 Services und zugleich Portainer eingerichtet und mit dem docker-compose up -d Befehl gestartet. Die Container werden der Reihe nach gestartet, bzw. das definierte Image wird vom Docker Hub geholt und danach mit den nötigen Ports und Environment-Variabeln gestartet. Die Environment-Variables sind mehrheitlich Systemanpassungen wie die Zeit
 
 ```yml
 version: '3'
@@ -132,7 +132,7 @@ services:
      - 32413:32413/udp
      - 32414:32414/udp
    environment:
-     - TZ=Europe/UTC
+     - TZ=Europe/Zurich
      - PLEX_CLAIM=Z4szTvSYzN7tfjEsUyDz
      - ADVERTISE_IP=http://192.168.50.2:32400/
    hostname: Vagrant_VM
@@ -148,7 +148,7 @@ services:
     ports:
         - 8989:8989/tcp
     environment:
-        - TZ=Europe/UTC
+        - TZ=Europe/Zurich
         - PGID=1000
         - PUID=1000
     volumes:
@@ -163,7 +163,7 @@ services:
     ports:
         - 7878:7878/tcp
     environment:
-        - TZ=Europe/UTC
+        - TZ=Europe/Zurich
         - PGID=1000
         - PUID=1000
     volumes:
@@ -177,9 +177,10 @@ services:
     restart: unless-stopped
     ports:
         - 9000:9000
-    #command: -H unix:///var/run/docker.sock
+    command: -H unix:///var/run/docker.sock
     volumes:
         - /portainer/data:/data
+        - /var/run/docker.sock:/var/run/docker.sock
     network_mode: bridge
 ```
 
@@ -190,7 +191,9 @@ Die Ports die weitergeleitet werden sollen, sind dieselbe, die der Docker Daemon
 
 
 ## 6 - Testing
-Der erster Zugriff auf die Dienste habe ich erfolgreich nach der Portweiterleitung ausgestestet. Die URL-Adresse wäre localhost:[Port]. Dieses [Video](/LB1/media/downloads/Erster_Zugriff_auf_Dienste_copy.mp4) stellt den Zugriff dar.
+Der erster Zugriff auf die Dienste habe ich erfolgreich nach der Portweiterleitung ausgestestet. Die URL-Adresse wäre localhost:[Port]. Dieses [Video](/LB1/media/downloads/Zugriff.gif) stellt den Zugriff dar.
+Der Zugriff auf Plex und der Login mit dem vordefinierten Claim-Token, den mit meinem Account verbunden ist, war erfolgreich und ich sehe meine Plex-Inhalte, die mit meinem Account verbunden sind. 
+Das Login auf Portainer war ebenfalls erfolgreich. Bei Sonarr und Radarr habe ich keine zusätzliche Konfiguration getätigt.
 
 
 ## 7 - Bewertungsmatrix
@@ -202,8 +205,8 @@ In der nachstehende Tabelle wird das Bewertungsmatrix für die LB1 dargestellt m
 | Technische Doku (Struktur, Tiefe, Gestaltung, Formatierung, Nachvollziehbarkeit) (6P) | Ja, alle wichtige Punkte drin, mit Markdown gearbeitet          |
 | Entwicklung des Repositories (Regelmässigkeit und Umfang der Updates/Commits) (3P)    | Ja, 41 Commits über 1 Monat                                     |
 | Grund-Service, Funktionalität, Dokumentation (Eigen- oder Ergänzungsleistung!) (3P)   | Ja, mit Docker Container und Services (KEIN Vorhander Beispiel) |
-| Ergänzende Services, Funktionalität, Dokumentation (3P)                               |                                                                 |
-| Engagement, Haltung, Professionalität, Kommunikation (2P)                             | IMO andere geholfen,                                            |
+| Ergänzende Services, Funktionalität, Dokumentation (3P)                               | Im Docker-Compose File im ReadMe erklärt                        |
+| Engagement, Haltung, Professionalität, Kommunikation (2P)                             | Schulkammeraden durchgehend geholfen                            |
 | Präsentation, Live-Demo & Quellenangaben (2P)                                         |                                                                 |
 
 ## 8 - Reflexion
