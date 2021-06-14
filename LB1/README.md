@@ -15,6 +15,8 @@ vagrant up
 [8 - Reflexion](#8---reflexion)\
 [9 - Quellen](#9---quellen)
 
+--------
+
 ## 1 - Technische Übersicht
 ![Bild von der Aufstellung](/LB1/Bilder/Technische_Übersicht.png)
 
