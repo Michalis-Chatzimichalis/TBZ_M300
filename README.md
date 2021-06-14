@@ -95,7 +95,7 @@ Für den ersten Beispiel werde ich eine DB mit einem phpmyadmin GUI via Vagrantf
 
 
 ## 25 - Sicherheit 1
-Die UFW (Uncomplicated Firewall)
+Die UFW (Uncomplicated Firewall) ist eine integrierte Kommandozeile-Tool. Das Ziel von UFW ist es, ein unkompliziertes Kommandozeilen-basiertes Frontend für das sehr leistungsfähige, aber nicht gerade einfach zu konfigurierende iptables zu bieten. UFW unterstützt sowohl IPv4 als auch IPv6.
 
 ## XX - LB1
 In Verlauf vom diesem Modul müssten wir für die LB1 einige Dienste automatisiert zur Verfügung stellen. Dies habe ich mit Docker Container erledigt, um Plex, Sonarr, Radarr und Portainer hochzufahren. Die detaillierte Beschreibung und Aufbau meiner LB1 finden Sie [hier](/LB1/README.md).
