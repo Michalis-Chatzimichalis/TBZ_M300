@@ -15,11 +15,11 @@ vagrant up
 8. Reflexion
 9. Quellen
 
-## Technische Übersicht
+## 1 - Technische Übersicht
 ![Bild von der Aufstellung](/LB1/Bilder/Technische_Übersicht.png)
 
 
-## Voraussetzungen
+## 2 - Voraussetzungen
 Die Voraussetzungen fürs folgende Projekt sind folgende:
 
 - GitHub
@@ -29,13 +29,13 @@ Die Voraussetzungen fürs folgende Projekt sind folgende:
 - Docker (Docker-File, Kenntnisse von Vorteil)
 - Browser
 
-## Funktionen
+## 3 - Funktionen
 - Der Plex Server dient für das Herausgeben und Zuschauen von Inhalte. Der Link zum [Plex-Server Container (mit IP)](http://192.168.50.2:32400). Der [Link](www.plex.tv) zur offiziellen Programm von Plex.
 - Der Sonarr Dienst bietet die Möglichkeit Dateiindexinformationen (Torrent-Websites) automatisch an Ihren Download-Client (z. B. Utorrent/qTorrent) zu übergeben und dann Aktionen mit den heruntergeladenen Dateien durchzuführen.
 - Der Radarr Dienst dient für das 
 
-## Deklaritiver Aufbau
-### Vagrantfile
+## 4 - Deklaritiver Aufbau
+### 4.1 - Vagrantfile
 Das Vagrantfile sieht wie folgt aus. Am Anfang wird die Variable für das Definieren der VM-Einstellungen angegeben. Mit docker.vm.xxxxx
 
 ```ruby
@@ -70,7 +70,7 @@ Vagrant.configure("2") do |config|
 end
 ```
 
-### Bash-File um Docker zu installieren
+### 4.2 - Bash-File um Docker zu installieren
 Nachdem die VM und die Netzwerkkonfigurationen eingerichtet werden, wird dieses Shell-Script eingespiest, welches das System allererstens aktualisiert und danach die nötigen Komponenten für die Docker Engine Installation ladet. Zuletzt fügt es den automatisch erstellten Vagrant User in der Docker-Gruppe sodass der Vagrant-User auch ohne sudo Präfix die Docker-Kommandos ausführen kann. Am Schluss wechselts im gemounten Verzeichnis und startet die 4 Container, die im untenstehenden yaml-File beschrieben sind.
 
 ```shell
@@ -112,7 +112,7 @@ sudo ufw allow 8000/tcp
 docker-compose up -d
 ```
 
-### docker-compose.yml File
+### 4.3 - docker-compose.yml File
 Im Docker-Compose File werden die 3 Services und zugleich Portainer eingerichtet und mit dem docker-compose up -d Befehl gestartet. Die Container werden der Reihe nach gestartet, bzw. das definierte Image wird vom Docker Hub geholt und danach mit den nötigen Ports und Environment-Variabeln gestartet.
 
 ```yml
@@ -186,15 +186,15 @@ services:
 
 Die Dienste sind demnach unter localhost:32400 für Plex, für radarr localhost:7878 usw. erreichbar.
 
-## Sicherheit
+## 5 - Sicherheit
 Die Ports die weitergeleitet werden sollen, sind dieselbe, die der Docker Daemon weiterleiten tut und zwar sind es die 9. Auf der Ubuntu VM habe/werde ich die UFW einsetzen, um nur die Ports an meinem lokalen Host weiterzuleiten sowie an den Docker Containers freizugeben
 
 
-## Testing
+## 6 - Testing
 Der erster Zugriff auf die Dienste habe ich erfolgreich nach der Portweiterleitung ausgestestet. Die URL-Adresse wäre localhost:[Port]. Dieses [Video](/LB1/media/downloads/Erster_Zugriff_auf_Dienste_copy.mp4) stellt den Zugriff dar.
 
 
-## Bewertungsmatrix
+## 7 - Bewertungsmatrix
 In der nachstehende Tabelle wird das Bewertungsmatrix für die LB1 dargestellt mitsamt meine Notizen.
 
 | Kriterium                                                                             | Erfüllt                                                         |
@@ -207,8 +207,8 @@ In der nachstehende Tabelle wird das Bewertungsmatrix für die LB1 dargestellt m
 | Engagement, Haltung, Professionalität, Kommunikation (2P)                             | IMO andere geholfen,                                            |
 | Präsentation, Live-Demo & Quellenangaben (2P)                                         |                                                                 |
 
-## Reflexion
+## 8 - Reflexion
 Meiner Meinung nach war diese LB1 eine gute Übung für mich, da ich mich im Vorhin nicht so wirklick mit Vagrant ausgekennt habe. Nun könnte ich eine automatisierte Instanz 4 verschiedener Docker Containers zustande bringen, was mich sehr motiviert. Die Dokumentation mit Git war auch einer interessanter Aspekt und konnte mir jedenfalls wichtige Sachen entnehmen. Eine Sache war, dass GitHub eine max. Dateigrösse auf 100MB setzt und wenn man das nicht beachtet und einige lokale Commits mit einem grösseren File absichert und den File danach löscht, ist der Push zur Remote-Repository sehr schwierig. Mit git revert/checkout und das git LFS Modul kam ich nicht weiter und müsste meine Remote-Repo nochmals in einem anderen lokalen Verzeichnis pullen und dort denn Stand weitertreiben.
 
-## Quellen
+## 9 - Quellen
 Die config.xml-Files in den Verzeichnissen habe ich von [diesem GitHub](https://github.com/shaharyarahmad/media-setup)

@@ -17,22 +17,19 @@ apt install docker-compose -y
 usermod -aG docker vagrant
 cd /vagrant
 #UFW enablen
-echo "y" | sudo ufw disable
+echo "y" | sudo ufw enable
 #UFW for Plex
-#sudo ufw allow from 10.0.2.2 to any ssh
-sudo ufw allow 32400/tcp
+sudo ufw allow from 10.0.2.2 to any port 22
 sudo ufw allow 3005/tcp
 sudo ufw allow 8324/tcp
+sudo ufw allow 32400/tcp
 sudo ufw allow 32469/tcp
 sudo ufw allow 1900/udp
-sudo ufw allow 32410/udp
-sudo ufw allow 32412/udp
-sudo ufw allow 32413/udp
-sudo ufw allow 32413/udp
+sudo ufw allow 32410:32413/udp
 #UFW for Sonarr, Radarr, Portainer
-sudo ufw allow 8989/tcp
 sudo ufw allow 7878/tcp
-sudo ufw allow 9000/tcp
 sudo ufw allow 8000/tcp
+sudo ufw allow 8989/tcp
+sudo ufw allow 9000/tcp
 #docker-compose up
 docker-compose up -d
