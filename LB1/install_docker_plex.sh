@@ -1,3 +1,4 @@
+#Set time and do a starting update -> upgrade
 sudo rm /etc/localtime && sudo ln -s /usr/share/zoneinfo/Europe/Zurich /etc/localtime
 apt-get update
 apt-get upgrade -y
