@@ -5,15 +5,15 @@ vagrant up
 ```
 
 # Inhaltsverzeichnis
-1. Technische Übersicht
-2. Voraussetzungen
-3. Funktionen
-4. Deklaritiver Aufbau
-5. Sicherheit
-6. Testing
-7. Bewertungsmatrix
-8. Reflexion
-9. Quellen
+[1 - Technische Übersicht](#1---technische-übersicht)\
+[2 - Voraussetzungen](#2---voraussetzungen)\
+[3 - Funktionen](#3---funktionen)\
+[4 - Deklarativer Aufbau](#4---deklarativer-aufbau)\
+[5 - Sicherheit](#5---sicherheit)\
+[6 - Testing](#6---testing)\
+[7 - Bewertungsmatrix](#7---bewertungsmatrix)\
+[8 - Reflexion](#8---reflexion)\
+[9 - Quellen](#9---quellen)
 
 ## 1 - Technische Übersicht
 ![Bild von der Aufstellung](/LB1/Bilder/Technische_Übersicht.png)
@@ -31,10 +31,11 @@ Die Voraussetzungen fürs folgende Projekt sind folgende:
 
 ## 3 - Funktionen
 - Der Plex Server dient für das Herausgeben und Zuschauen von Inhalte. Der Link zum [Plex-Server Container (mit IP)](http://192.168.50.2:32400). Der [Link](www.plex.tv) zur offiziellen Programm von Plex.
-- Der Sonarr Dienst bietet die Möglichkeit Dateiindexinformationen (Torrent-Websites) automatisch an Ihren Download-Client (z. B. Utorrent/qTorrent) zu übergeben und dann Aktionen mit den heruntergeladenen Dateien durchzuführen.
-- Der Radarr Dienst dient für das 
+- Der Sonarr Dienst bietet die Möglichkeit Dateiindexinformationen (Torrent-Websites) automatisch an Ihren Download-Client (z. B. Utorrent/qTorrent) zu übergeben und dann Aktionen mit den heruntergeladenen Dateien durchzuführen. [Link](localhost:8989)
+- Radarr verlässt sich auf RSS-Feeds, um das Greifen von Veröffentlichungen zu automatisieren, sobald diese veröffentlicht werden, sowohl für neue Veröffentlichungen als auch für bereits veröffentlichte Veröffentlichungen, die neu oder erneut veröffentlicht werden. [Link](localhost:7878)
+- Portainer dient für die Verwaltung von den 3 Container. [Link](localhost:9000)
 
-## 4 - Deklaritiver Aufbau
+## 4 - Deklarativer Aufbau
 ### 4.1 - Vagrantfile
 Das Vagrantfile sieht wie folgt aus. Am Anfang wird die Variable für das Definieren der VM-Einstellungen angegeben. Mit docker.vm.xxxxx
 
