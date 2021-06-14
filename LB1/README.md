@@ -74,6 +74,7 @@ end
 Nachdem die VM und die Netzwerkkonfigurationen eingerichtet werden, wird dieses Shell-Script eingespiest, welches das System allererstens aktualisiert und danach die nötigen Komponenten für die Docker Engine Installation ladet. Zuletzt fügt es den automatisch erstellten Vagrant User in der Docker-Gruppe sodass der Vagrant-User auch ohne sudo Präfix die Docker-Kommandos ausführen kann. Am Schluss wechselts im gemounten Verzeichnis und startet die 4 Container, die im untenstehenden yaml-File beschrieben sind.
 
 ```shell
+#Set time and do a starting update -> upgrade
 sudo rm /etc/localtime && sudo ln -s /usr/share/zoneinfo/Europe/Zurich /etc/localtime
 apt-get update
 apt-get upgrade -y
@@ -94,20 +95,18 @@ cd /vagrant
 #UFW enablen
 echo "y" | sudo ufw enable
 #UFW for Plex
-sudo ufw allow 32400/tcp
+sudo ufw allow from 10.0.2.2 to any port 22
 sudo ufw allow 3005/tcp
 sudo ufw allow 8324/tcp
+sudo ufw allow 32400/tcp
 sudo ufw allow 32469/tcp
 sudo ufw allow 1900/udp
-sudo ufw allow 32410/udp
-sudo ufw allow 32412/udp
-sudo ufw allow 32413/udp
-sudo ufw allow 32413/udp
+sudo ufw allow 32410:32413/udp
 #UFW for Sonarr, Radarr, Portainer
-sudo ufw allow 8989/tcp
 sudo ufw allow 7878/tcp
-sudo ufw allow 9000/tcp
 sudo ufw allow 8000/tcp
+sudo ufw allow 8989/tcp
+sudo ufw allow 9000/tcp
 #docker-compose up
 docker-compose up -d
 ```
@@ -187,7 +186,7 @@ services:
 Die Dienste sind demnach unter localhost:32400 für Plex, für radarr localhost:7878 usw. erreichbar.
 
 ## 5 - Sicherheit
-Die Ports die weitergeleitet werden sollen, sind dieselbe, die der Docker Daemon weiterleiten tut und zwar sind es die 9. Auf der Ubuntu VM habe/werde ich die UFW einsetzen, um nur die Ports an meinem lokalen Host weiterzuleiten sowie an den Docker Containers freizugeben
+Die Ports die weitergeleitet werden sollen, sind dieselbe, die der Docker Daemon weiterleiten tut und zwar sind es die 9. Auf der Ubuntu VM habe/werde ich die UFW einsetzen, um nur die Ports an meinem lokalen Host weiterzuleiten sowie an den Docker Containers freizugeben. SSH Zugriff habe ich auch nur auf meinem Host eingegrenzt `sudo ufw allow from 10.0.2.2 to any port 22`.
 
 
 ## 6 - Testing
