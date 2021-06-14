@@ -1,21 +1,27 @@
 # Einleitung
-In der LB1 werde ich Docker verwenden, um Plex einzurichten und mittels Sonarr/Radarr ein automatisiertes Herunterladen von TV-Serien und Filme gestatten.
+In der LB1 werde ich Docker verwenden, um Plex einzurichten und mittels Sonarr/Radarr ein automatisiertes Herunterladen von TV-Serien und Filme gestatten. Mit dem folgenden Kommando könnte Ihr die VM bei euch einrichten, um die 4 Container mit einer Absicherung mittels UFW hochzufahren.
+```shell
+vagrant up
+```
 
 # Inhaltsverzeichnis
 1. Technische Übersicht
 2. Voraussetzungen
-3. Deklaritiver Aufbau
-4. Funktionen
+3. Funktionen
+4. Deklaritiver Aufbau
 5. Sicherheit
 6. Testing
 7. Bewertungsmatrix
-8. Quellen
+8. Reflexion
+9. Quellen
 
 ## Technische Übersicht
 ![Bild von der Aufstellung](/LB1/Bilder/Technische_Übersicht.png)
 
 
 ## Voraussetzungen
+Die Voraussetzungen fürs folgende Projekt sind folgende:
+
 - GitHub
 - Git/Bash
 - Vagrant (Vagrantfile)
@@ -68,6 +74,7 @@ end
 Nachdem die VM und die Netzwerkkonfigurationen eingerichtet werden, wird dieses Shell-Script eingespiest, welches das System allererstens aktualisiert und danach die nötigen Komponenten für die Docker Engine Installation ladet. Zuletzt fügt es den automatisch erstellten Vagrant User in der Docker-Gruppe sodass der Vagrant-User auch ohne sudo Präfix die Docker-Kommandos ausführen kann. Am Schluss wechselts im gemounten Verzeichnis und startet die 4 Container, die im untenstehenden yaml-File beschrieben sind.
 
 ```shell
+sudo rm /etc/localtime && sudo ln -s /usr/share/zoneinfo/Europe/Zurich /etc/localtime
 apt-get update
 apt-get upgrade -y
 #Add Repository and GPG Key. Add Repo to sources
@@ -81,14 +88,32 @@ apt-get upgrade -y
 apt-cache policy docker-ce
 apt install docker-ce -y
 apt install docker-compose -y
+#Add Vagrant in Docker Group so no sudo, cd into shared folder
 usermod -aG docker vagrant
-#docker-compose up
 cd /vagrant
+#UFW enablen
+echo "y" | sudo ufw enable
+#UFW for Plex
+sudo ufw allow 32400/tcp
+sudo ufw allow 3005/tcp
+sudo ufw allow 8324/tcp
+sudo ufw allow 32469/tcp
+sudo ufw allow 1900/udp
+sudo ufw allow 32410/udp
+sudo ufw allow 32412/udp
+sudo ufw allow 32413/udp
+sudo ufw allow 32413/udp
+#UFW for Sonarr, Radarr, Portainer
+sudo ufw allow 8989/tcp
+sudo ufw allow 7878/tcp
+sudo ufw allow 9000/tcp
+sudo ufw allow 8000/tcp
+#docker-compose up
 docker-compose up -d
 ```
 
 ### docker-compose.yml File
-Im Docker-Compose File werden die 3 Services und zugleich Portainer eingerichtet und mit dem docker-compose up -d Befehl gestartet.
+Im Docker-Compose File werden die 3 Services und zugleich Portainer eingerichtet und mit dem docker-compose up -d Befehl gestartet. Die Container werden der Reihe nach gestartet, bzw. das definierte Image wird vom Docker Hub geholt und danach mit den nötigen Ports und Environment-Variabeln gestartet.
 
 ```yml
 version: '3'
@@ -162,20 +187,20 @@ services:
 Die Dienste sind demnach unter localhost:32400 für Plex, für radarr localhost:7878 usw. erreichbar.
 
 ## Sicherheit
-Die Ports die weitergeleitet werden sollen, sind dieselbe, die der Docker Daemon weiterleiten tut und zwar sind es die 9
+Die Ports die weitergeleitet werden sollen, sind dieselbe, die der Docker Daemon weiterleiten tut und zwar sind es die 9. Auf der Ubuntu VM habe/werde ich die UFW einsetzen, um nur die Ports an meinem lokalen Host weiterzuleiten sowie an den Docker Containers freizugeben
 
 
 ## Testing
-Der erster Zugriff auf die Dienste habe ich erfolgreich nach der Portweiterleitung ausgestestet. Die URL-Adresse wäre localhost:[Port]. Dieses [Video]](/LB1/media/downloads/Erster_Zugriff_auf_Dienste.mp4) stellt den Zugriff dar.
+Der erster Zugriff auf die Dienste habe ich erfolgreich nach der Portweiterleitung ausgestestet. Die URL-Adresse wäre localhost:[Port]. Dieses [Video](/LB1/media/downloads/Erster_Zugriff_auf_Dienste_copy.mp4) stellt den Zugriff dar.
 
 
 ## Bewertungsmatrix
-In der nachstehende Tabelle wird das Bewertungsmatrix für die LB1.
+In der nachstehende Tabelle wird das Bewertungsmatrix für die LB1 dargestellt mitsamt meine Notizen.
 
 | Kriterium                                                                             | Erfüllt                                                         |
 | ------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
 | Setup Umgebung, Lernumgebung, Tools (6P)                                              | Ja                                                              |
-| Technische Doku (Struktur, Tiefe, Gestaltung, Formatierung, Nachvollziehbarkeit) (6P) |                                                                 |
+| Technische Doku (Struktur, Tiefe, Gestaltung, Formatierung, Nachvollziehbarkeit) (6P) | Ja, alle wichtige Punkte drin, mit Markdown gearbeitet          |
 | Entwicklung des Repositories (Regelmässigkeit und Umfang der Updates/Commits) (3P)    | Ja, 41 Commits über 1 Monat                                     |
 | Grund-Service, Funktionalität, Dokumentation (Eigen- oder Ergänzungsleistung!) (3P)   | Ja, mit Docker Container und Services (KEIN Vorhander Beispiel) |
 | Ergänzende Services, Funktionalität, Dokumentation (3P)                               |                                                                 |

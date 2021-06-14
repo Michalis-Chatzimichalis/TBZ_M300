@@ -1,6 +1,7 @@
 # M300_Services
 
 ![Git](/Bilder%20Doku/Cover_Readme.png)
+\
 Quelle: [Medium-Artikel](https://medium.com/analytics-vidhya/git-101-cdf8d18b895e)
 # Einleitung allgemein
 Dieses Projekt ist der Einstieg ins Informatik-Modul 300 - Plattformübergreifende Dienste in ein Netzwerk integrieren.
@@ -12,6 +13,7 @@ Die Aufgaben (KAP10-50) werden fortlaufend unter Projects mitsamt einem Kanban B
 * 10 - Toolumgebung
 * 20 - Infrastruktur
 * 25 - Sicherheit 1
+* XX - LB1
 * 30 - Container
 * 35 - Sicherheit 2
 * 40 - Container-Orchestrierung
@@ -84,23 +86,19 @@ Für Markdown ist folgendes [Cheat Sheet](https://github.com/adam-p/markdown-her
  
 ## 20 - Infrastruktur
 Sie können eine Dynamischen Infrastruktur-Plattform (Private Cloud) einrichten, auf der Virtuelle Maschinen auf Basis von konsistenten und wiederholten Definitionen automatisiert erstellt werden können.
-### Packer
-
-
-#### Installation
-Text
-
 
 ### AWS Cloud
 1. Als Erstes richte ich 
 
-### Beispiele
+### Beispielsuafgaben
 Für den ersten Beispiel werde ich eine DB mit einem phpmyadmin GUI via Vagrantfile einrichten. Die benötigten Dateien findet man [hier](20%20-%20Beispielsaufgabe%20DB/).
 
 
-
 ## 25 - Sicherheit 1
+Die UFW (Uncomplicated Firewall)
 
+## XX - LB1
+In Verlauf vom diesem Modul müssten wir für die LB1 einige Dienste automatisiert zur Verfügung stellen. Dies habe ich mit Docker Container erledigt, um Plex, Sonarr, Radarr und Portainer hochzufahren. Die detaillierte Beschreibung und Aufbau meiner LB1 finden Sie [hier](/LB1/README.md).
 
 ## 30 - Container
 

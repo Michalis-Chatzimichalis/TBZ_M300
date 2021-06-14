@@ -60,7 +60,8 @@ services:
     restart: unless-stopped
     ports:
         - 9000:9000
-    #command: -H unix:///var/run/docker.sock
+    #command:
+    #   - -H unix:///var/run/docker.sock
     volumes:
         - /portainer/data:/data
     network_mode: bridge
