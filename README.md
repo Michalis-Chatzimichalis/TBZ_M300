@@ -89,12 +89,10 @@ Für Markdown ist folgendes [Cheat Sheet](https://github.com/adam-p/markdown-her
 ## 20 - Infrastruktur
 Sie können eine Dynamischen Infrastruktur-Plattform (Private Cloud) einrichten, auf der Virtuelle Maschinen auf Basis von konsistenten und wiederholten Definitionen automatisiert erstellt werden können.
 
-### AWS Cloud
-1. Als Erstes richte ich 
-
-### Beispielsuafgaben
+### Beispielsaufgaben
 Für den ersten Beispiel werde ich eine DB mit einem phpmyadmin GUI via Vagrantfile einrichten. Die benötigten Dateien findet man [hier](20%20-%20Beispielsaufgabe%20DB/).
 
+Info-Datei für [Vagrant und Packer](/50%20-%20Informieren.md)
 
 ## 25 - Sicherheit 1
 Die UFW (Uncomplicated Firewall) ist eine integrierte Kommandozeile-Tool. Das Ziel von UFW ist es, ein unkompliziertes Kommandozeilen-basiertes Frontend für das sehr leistungsfähige, aber nicht gerade einfach zu konfigurierende iptables zu bieten. UFW unterstützt sowohl IPv4 als auch IPv6.
@@ -103,6 +101,9 @@ Die UFW (Uncomplicated Firewall) ist eine integrierte Kommandozeile-Tool. Das Zi
 In Verlauf vom diesem Modul müssten wir für die LB1 einige Dienste automatisiert zur Verfügung stellen. Dies habe ich mit Docker Container erledigt, um Plex, Sonarr, Radarr und Portainer hochzufahren. Die detaillierte Beschreibung und Aufbau meiner LB1 finden Sie [hier](/LB1/README.md).
 
 ## 30 - Container
+
+### Microservices
+Microservices sind ein Weg, Softwaresysteme so zu entwickeln und zu kombinieren, dass sie aus kleinen, unabhängigen Komponenten bestehen, die untereinander über das Netz interagieren. Das steht im Gegensatz zum klassischen, monolithischen Weg der Softwareentwicklung, bei dem es ein einzelnes, grosses Programm gibt.
 
 ## 35 - Sicherheit 2
 
