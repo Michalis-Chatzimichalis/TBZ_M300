@@ -11,9 +11,8 @@ vagrant up
 [4 - Deklarativer Aufbau](#4---deklarativer-aufbau)\
 [5 - Sicherheit](#5---sicherheit)\
 [6 - Testing](#6---testing)\
-[7 - Bewertungsmatrix](#7---bewertungsmatrix)\
-[8 - Reflexion](#8---reflexion)\
-[9 - Quellen](#9---quellen)
+[7 - Reflexion](#7---reflexion)\
+[8 - Quellen](#8---quellen)
 
 --------
 
@@ -198,23 +197,9 @@ Der erster Zugriff auf die Dienste habe ich erfolgreich nach der Portweiterleitu
 Der Zugriff auf Plex und der Login mit dem vordefinierten Claim-Token, den mit meinem Account verbunden ist, war erfolgreich und ich sehe meine Plex-Inhalte, die mit meinem Account verbunden sind. \
 Das Login auf Portainer war ebenfalls erfolgreich. Bei Sonarr und Radarr habe ich keine zusätzliche Konfiguration getätigt.
 
-
-## 7 - Bewertungsmatrix
-In der nachstehende Tabelle wird das Bewertungsmatrix für die LB1 dargestellt mitsamt meine Notizen.
-
-| Kriterium                                                                             | Erfüllt                                                         |
-| ------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| Setup Umgebung, Lernumgebung, Tools (6P)                                              | Ja                                                              |
-| Technische Doku (Struktur, Tiefe, Gestaltung, Formatierung, Nachvollziehbarkeit) (6P) | Ja, alle wichtige Punkte drin, mit Markdown gearbeitet          |
-| Entwicklung des Repositories (Regelmässigkeit und Umfang der Updates/Commits) (3P)    | Ja, 41 Commits über 1 Monat                                     |
-| Grund-Service, Funktionalität, Dokumentation (Eigen- oder Ergänzungsleistung!) (3P)   | Ja, mit Docker Container und Services (KEIN Vorhander Beispiel) |
-| Ergänzende Services, Funktionalität, Dokumentation (3P)                               | Im Docker-Compose File im ReadMe erklärt                        |
-| Engagement, Haltung, Professionalität, Kommunikation (2P)                             | Schulkammeraden durchgehend geholfen                            |
-| Präsentation, Live-Demo & Quellenangaben (2P)                                         |                                                                 |
-
-## 8 - Reflexion
+## 7 - Reflexion
 Meiner Meinung nach war diese LB1 eine gute Übung für mich, da ich mich im Vorhin nicht so wirklick mit Vagrant ausgekennt habe. Nun könnte ich eine automatisierte Instanz 4 verschiedener Docker Containers zustande bringen, was mich sehr motiviert. Die Dokumentation mit Git war auch einer interessanter Aspekt und konnte mir jedenfalls wichtige Sachen entnehmen.\
 Eine Sache war, dass GitHub eine max. Dateigrösse auf 100MB setzt und wenn man das nicht beachtet und einige lokale Commits mit einem grösseren File absichert und den File danach löscht, ist der Push zur Remote-Repository sehr schwierig. Mit git revert/checkout und das git LFS Modul kam ich nicht weiter und müsste meine Remote-Repo nochmals in einem anderen lokalen Verzeichnis pullen und dort denn Stand weitertreiben.
 
-## 9 - Quellen
+## 8 - Quellen
 Die config.xml-Files in den Verzeichnissen habe ich von [diesem GitHub](https://github.com/shaharyarahmad/media-setup)
