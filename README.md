@@ -16,6 +16,7 @@ Die Aufgaben (KAP10-50) werden fortlaufend unter Projects mitsamt einem Kanban B
 [XX - LB1](#xx---lb1)\
 [30 - Container](#30---container)\
 [35 - Sicherheit 2](#35---sicherheit-2)\
+[XX - LB2](#xx---lb2)\
 [40 - Container-Orchestrierung](#40---container-orchestrierung)\
 [50 - Add-Ons](#50---add-ons)\
 [60 - Reflexion](#60---reflexion)
@@ -106,6 +107,9 @@ In Verlauf vom diesem Modul müssten wir für die LB1 einige Dienste automatisie
 Microservices sind ein Weg, Softwaresysteme so zu entwickeln und zu kombinieren, dass sie aus kleinen, unabhängigen Komponenten bestehen, die untereinander über das Netz interagieren. Das steht im Gegensatz zum klassischen, monolithischen Weg der Softwareentwicklung, bei dem es ein einzelnes, grosses Programm gibt.
 
 ## 35 - Sicherheit 2
+
+## XX - LB2
+Die LB2, bei der ich einen Docker Image von einer Webapplikation erstelle und den Container starte, wird in diesem [Ordner](/LB2/README.md) beschrieben.
 
 ## 40 - Container-Orchestrierung
 
