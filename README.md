@@ -109,7 +109,7 @@ Microservices sind ein Weg, Softwaresysteme so zu entwickeln und zu kombinieren,
 ## 35 - Sicherheit 2
 
 ## XX - LB2
-Die LB2, bei der ich einen Docker Image von einer Webapplikation erstelle und den Container starte, wird in diesem [Ordner](/LB2/README.md) beschrieben.
+Die LB2, bei der ich einen Docker Image von einer Webapplikation erstelle und den Container starte, wird in diesem [Ordner](/LB2) beschrieben.
 
 ## 40 - Container-Orchestrierung
 
