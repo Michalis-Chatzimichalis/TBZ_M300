@@ -1,0 +1,13 @@
+{
+  "name": "container-web-test",
+  "private": true,
+  "version": "0.0.2",
+  "description": "Demo Web-App im Container",
+  "main": "app.js",
+  "author": "Marcello Calisto <marcello.calisto@tbz.ch>",
+  "license": "Vorsicht. Kann Schwachstellen (Vulnerabilities) enthalten",
+  "dependencies": {
+    "express": "4.17.1",
+    "pug": "2.0.4"
+  }
+}
