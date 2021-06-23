@@ -202,4 +202,4 @@ Meiner Meinung nach war diese LB1 eine gute Übung für mich, da ich mich im Vor
 Eine Sache war, dass GitHub eine max. Dateigrösse auf 100MB setzt und wenn man das nicht beachtet und einige lokale Commits mit einem grösseren File absichert und den File danach löscht, ist der Push zur Remote-Repository sehr schwierig. Mit git revert/checkout und das git LFS Modul kam ich nicht weiter und müsste meine Remote-Repo nochmals in einem anderen lokalen Verzeichnis pullen und dort denn Stand weitertreiben.
 
 ## 8 - Quellen
-Die config.xml-Files in den Verzeichnissen habe ich von [diesem GitHub](https://github.com/shaharyarahmad/media-setup)
+Die config.xml-Files in den Verzeichnissen habe ich von [diesem GitHub](https://github.com/shaharyarahmad/media-setup).
