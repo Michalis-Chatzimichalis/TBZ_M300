@@ -5,7 +5,6 @@ docker run --name web_app -p 8080:8080 michalis07/webapp
 ```
 
 **Inhaltsverzeichnis**
-- [- 9-Quellen](#--9-quellen)
 - [Technische Übersicht](#technische-übersicht)
 - [Voraussetzungen](#voraussetzungen)
 - [Funktionen](#funktionen)
