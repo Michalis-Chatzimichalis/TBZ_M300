@@ -1,28 +1,31 @@
-# Einleitung
 In der LB2 werde ich mittels Docker einen Image einer einfachen Webapplikation erstellen und der dann über Container Orchestrierung (Kubernetes) automatisch bereitstellen. Andere Dienste, wie ein Anaylse Tool oder ein Reverse Proxy sind auch in Bearbeitung/Pilotphase.<br>
 Mit diesem Befehl 
 ```shell
-vagrant up
+docker run --name web_app -p 8080:8080 michalis07/webapp
 ```
 
-# Inhaltsverzeichnis
-[1 - Technische Übersicht](#1---technische-übersicht)\
-[2 - Voraussetzungen](#2---voraussetzungen)\
-[3 - Funktionen](#3---funktionen)\
-[4 - Deklarativer Aufbau](#4---deklarativer-aufbau)\
-[5 - Kubernetes Orchestrierung](#5---kubernetes-orchestrierung)\
-[5 - Sicherheit](#xx---sicherheit)\
-[6 - Testing](#xx---testing)\
-[7 - Reflexion](#xx---reflexion)\
-[8 - Quellen](#xx---quellen)
-
+**Inhaltsverzeichnis**
+- [- 9-Quellen](#--9-quellen)
+- [Technische Übersicht](#technische-übersicht)
+- [Voraussetzungen](#voraussetzungen)
+- [Funktionen](#funktionen)
+- [Deklarativer Aufbau](#deklarativer-aufbau)
+  - [Vorbereitung](#vorbereitung)
+  - [Docker Hub Konto anbinden](#docker-hub-konto-anbinden)
+  - [Dockerfile](#dockerfile)
+  - [Docker Container starten](#docker-container-starten)
+- [Kubernetes Orchestrierung](#kubernetes-orchestrierung)
+- [Sicherheit](#sicherheit)
+- [Testing](#testing)
+- [Reflexion](#reflexion)
+- [Quellen](#quellen)
 --------
 
-## 1 - Technische Übersicht
+## Technische Übersicht
 ![Bild von der Aufstellung]()
 
 
-## 2 - Voraussetzungen
+## Voraussetzungen
 Die Voraussetzungen fürs folgende Projekt sind folgende:
 
 - GitHub
@@ -33,11 +36,11 @@ Die Voraussetzungen fürs folgende Projekt sind folgende:
   -  Docker Hub Account
 - Browser
 
-## 3 - Funktionen
-- Die node.js Applikation
+## Funktionen
+- Die node.js Applikation wird im Docker Image namens **webapp** packetiert und als Container gestartet. Sie stellt eine einfache HTML-Seite auf Port 8080 dar. 
 
-## 4 - Deklarativer Aufbau
-### 4.1 - Vorbereitung
+## Deklarativer Aufbau
+### Vorbereitung
 Zuerst gehe ich auf WireGuard, um das VPN der TBZ-Cloud zu aktivieren. Danach gebe ich folgendes Befehl im Git/Bash ein.
 ```shell
 ssh ubuntu@10.1.43.13
@@ -49,7 +52,7 @@ Zuerst führe ich das um den Server zu aktualisieren
 apt-get update && apt-get upgrade -y
 ```
 
-### 4.2 - Docker Hub Konto anbinden
+### Docker Hub Konto anbinden
 Mit diesem Befehl lege ich meinen Docker Hub Konto an und wird für mein Passwort gefordert.
 ```shell
 docker login --username=michalis07
@@ -60,7 +63,7 @@ Bei erfolgreichem Anlegen kann ich ohne Hindernis Images auf Docker Hub hochzula
 Der Inhalt der Website ändere ich, indem ich 'nano /views/home.pug' eingebe und das HTML-Content anpassen.
 ![Content Änderung](/LB2/Bilder/Content_Änderung.png)
 
-### 4.3 - Dockerfile
+### Dockerfile
 Das Dockerfile sieht wie folgt aus.
 ```dockerfile
 FROM node:current-slim
@@ -93,10 +96,10 @@ docker image push michalis07/webapp:1.0
 ```
 lade ich das auf der Docker Hub unter mein Account hoch.![](/LB2/Bilder/Docker_Hub_Push.png)
 
-### 4.4 - Docker Container starten
+### Docker Container starten
 Das Docker Container starte ich mit und bekomme die SHA256 ID des Containers.
 ```shell
-docker container run -d --name michalis-web -p 8080:8080 michalis07/webapp'
+docker container run -d --name michalis-web -p 8080:8080 michalis07/webapp
 ```
 ![](/LB2/Bilder/Docker_Web_App_Run.png)
 
@@ -106,7 +109,7 @@ docker ps | grep -i michalis-web
 docker container ls | grep -i michalis-web
 ```
 
-## 5 - Kubernetes Orchestrierung
+## Kubernetes Orchestrierung
 Auf meinen lokalen Client (Host) installiere ich **KubeCTL**. Im Verzeichnis C:\Users\apoll\ erstelle ich den benötigten Ordner .kube und öffne CMD/GitBash, damit ich diesen Befehl in dem besagten Ordner eingeben kann. 
 ```shell
 curl -LO https://dl.k8s.io/v1.21.0/bin/windows/amd64/kubectl.exe.sha256
@@ -137,17 +140,8 @@ users:
     client-certificate-data: [certificate-key]
     client-key-data: [key-key]
 ```
-
-## XX - Sicherheit
-
-
-
-## XX - Testing
-
-
-## XX - Reflexion
-
-
-
-## XX - Quellen
+## Sicherheit
+## Testing
+## Reflexion
+## Quellen
 Die Beispielsaufgabe mit dem Node.js Applikation besteht von der GitLab Repository vom Marcello Calisto. [Link zur Repository](https://gitlab.com/ser-cal/Container-CAL-webapp_v1/-/tree/master/)
