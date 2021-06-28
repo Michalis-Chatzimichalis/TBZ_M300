@@ -189,6 +189,13 @@ Der Verlauf ist in etwa so. Es gibt ein Master Node, der für das Zentralverwalt
 
 
 ![Abbild](/LB2/Bilder/K8s_Architecture.png)
+Auf den Worker Nodes laufen zwei Prozesse;
+* `kubelet`
+  * Liest der Health Status der verschiendener Pods heraus
+* `kube-proxy`
+  * Leitet allfällige TCP/UDP Ports von und zu den versch. Pods, evtl. vom Internet, der dann via Load Balancer (welcher auf einen von denen Pods als Service lauft) reinkommt.
+
+Node kann entweder phsyisch oder virtuell sein
 
 
 K8s -> Nodes -> Pods -> Container

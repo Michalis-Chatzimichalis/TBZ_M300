@@ -15,6 +15,8 @@ docker run --name web_app -p 8080:8080 michalis07/webapp
   - [Dockerfile](#dockerfile)
   - [Docker Container starten](#docker-container-starten)
 - [Kubernetes Orchestrierung](#kubernetes-orchestrierung)
+  - [Initialisierung und Erste Schritte](#initialisierung-und-erste-schritte)
+  - [Nodes und Pods definieren](#nodes-und-pods-definieren)
 - [Sicherheit](#sicherheit)
 - [Testing](#testing)
 - [Reflexion](#reflexion)
@@ -110,6 +112,7 @@ docker container ls | grep -i michalis-web
 ```
 
 ## Kubernetes Orchestrierung
+### Initialisierung und Erste Schritte
 Auf meinen lokalen Client (Host) installiere ich **KubeCTL**. Im Verzeichnis C:\Users\apoll\ erstelle ich den benötigten Ordner .kube und öffne CMD/GitBash, damit ich diesen Befehl in dem besagten Ordner eingeben kann. 
 ```shell
 curl -LO https://dl.k8s.io/v1.21.0/bin/windows/amd64/kubectl.exe.sha256
@@ -161,7 +164,7 @@ KubeDNS is running at https://10.1.43.13:6443/api/v1/namespaces/kube-system/serv
 ```
 Die aktuell laufenden Pods (Hosts) sind mit diesem Befehl ersichtlich.
 ```shell
-$ kubectl get pods
+$ kubectl get pods -o wide
 
 NAME                             READY   STATUS    RESTARTS   AGE
 eclipse-theia-79dcdc756d-4ckbp   1/1     Running   1          58d
@@ -185,6 +188,57 @@ Auf das Dashboard greift man über diesen [URL](http://localhost:8001/api/v1/nam
 ![](Bilder/K8s_Dashboard_login.png)
 
 Das Dashboard sieht dann wie folgt aus. ![](/LB2/Bilder/K8s_Dashboard.png)
+
+### Nodes und Pods definieren
+Als Vorbereitung werde ich die Repository von Marcello auf der VM klonen. Dafür erstelle ich den Ordner `TEMP_K8s` und führe den untenstehenden Befehl aus.
+
+```shell
+$ sudo git clone https://gitlab.com/ser-cal/cal_kubernetes.git
+
+$ cd cal_kubernetes | ls -l
+
+total 24
+drwxr-xr-x 2 root root 4096 Jun 28 12:39 Deployments
+drwxr-xr-x 2 root root 4096 Jun 28 12:39 Pods
+-rw-r--r-- 1 root root 4816 Jun 28 12:39 README.md
+drwxr-xr-x 2 root root 4096 Jun 28 12:39 Services
+drwxr-xr-x 2 root root 4096 Jun 28 12:39 images
+```
+Um das erste Pod im Verzeichnes `Pods` zu starten, muss das Pod-Manifest deployed werden. Dieses Pod-Manifest sieht wie folgt aus und definiert der Container mit meinem Image, den ich auf Docker Hub zugleich publiziert und auch lokal habe.
+
+```yml
+## M. Chatzimichalis: getestet am 28.6.2021
+## Beispiel Pod YAML:
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: michalis-pod
+  labels:
+    app: web
+
+spec:
+  containers:
+  - name: michalis-container
+    image: michalis07/webapp:1.0
+    ports:
+    - containerPort: 8080
+```
+Um den Pod nun zu deployen gebe ich diesen Befehl ein. Mit dem Befehl `kubectl get pods -o wide` zeige ich alle 
+
+```shell
+$ sudo mv calisto-pod.yaml michalis-pod.yaml
+$ kubectl apply -f michalis-pod.yaml
+  
+  pod/michalis-pod created
+
+$ kubectl get pods -o wide
+
+NAME        READY  STATUS    RESTARTS  AGE   IP         NODE             
+michalis-pod 1/1   Running  0         97s   10.244.0.20 m300-13-st18a-cal
+```
+Nun werde ich über das Deployment mehrere Pods laufen mit dem bestimmten Service
+ 
 
 ## Sicherheit
 ## Testing
