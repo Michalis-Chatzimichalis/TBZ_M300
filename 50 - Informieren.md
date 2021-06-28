@@ -167,8 +167,20 @@ Die Builder erstellen ein Image für eine bestimmte dynamische Infrastruktur-Pla
 **Post-processors**\
 Um ein neues Artefakt/Instanz zu erstellen, werden Ergebnisse auf Builders oder Post-Prozessor geholt.
 
----------
-## 05 - Kubernetes
+## Docker
+-------
+Hier einige Cheat-Sheet für Docker Kommandos.<br>
+
+![Cheat-Sheet](Bilder%20Doku/Docker_Cheat_Sheet.png)
+<br>
+
+![Cheat-Sheet](Bilder%20Doku/Docker_Cheat_Sheet.png)
+
+Ein Cheat-Sheet zur Aufbau der Docker Architektur ![](/Bilder%20Doku/Docker_Architecture.png)
+
+
+
+## Kubernetes
 ---------
 
 Kubernetes ist ein Open-Source Programm 
