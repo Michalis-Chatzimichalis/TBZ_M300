@@ -126,7 +126,7 @@ Die Standard-Registry ist der Docker Hub, auf dem tausende öffentlich verfügba
 Viele Organisationen und Firmen nutzen eigene Registries, um kommerzielle oder "private" Images zu hosten, aber auch um den Overhead zu vermeiden, der mit dem Herunterladen von Images über das Internet einhergeht.
 
 ## 35 - Sicherheit 2
-Test-Konto
+
 
 ## XX - LB2
 Die LB2, bei der ich einen Docker Image von einer Webapplikation erstelle und den Container starte, wird in diesem [Ordner](/LB2) beschrieben.

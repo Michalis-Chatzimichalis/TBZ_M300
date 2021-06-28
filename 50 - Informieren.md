@@ -185,7 +185,11 @@ Ein Cheat-Sheet zur Aufbau der Docker Architektur ![](/Bilder%20Doku/Docker_Arch
 
 Kubernetes ist ein Open-Source Programm 
 
-Der Verlauf ist in etwa so;
+Der Verlauf ist in etwa so. Es gibt ein Master Node, der für das Zentralverwalten für das Kubernetes Cluster und aller Worker Nodes zuständig ist.
+
+
+![Abbild](/LB2/Bilder/K8s_Architecture.png)
+
 
 K8s -> Nodes -> Pods -> Container
 

@@ -5,6 +5,7 @@ docker run --name web_app -p 8080:8080 michalis07/webapp
 ```
 
 **Inhaltsverzeichnis**
+- [- Quellen](#--quellen)
 - [Technische Übersicht](#technische-übersicht)
 - [Voraussetzungen](#voraussetzungen)
 - [Funktionen](#funktionen)
@@ -118,6 +119,7 @@ Mit `kubectl version` kann die Version überprüft werden.
 
 Nun erstelle ich den Verzeichnis **.kube** und wechsle zu dem, um die Konfigurationsdatei für das Kubernetes Cluster abzulegen, erstelle ich die leere Datei **config**.
 Diesen Inhalt kopiere ich rein und speichere es ab.
+
 ```yml
 apiVersion: v1
 clusters:
@@ -139,6 +141,51 @@ users:
     client-certificate-data: [certificate-key]
     client-key-data: [key-key]
 ```
+
+Der .kube Ordner soll wie folgt aussehen.
+
+```shell
+apoll@I-320s-MIC MINGW64 ~/.kube
+$ ls -l
+total 46748
+drwxr-xr-x 1 apoll 197609        0 Jun 21 15:49 cache/
+-rw-r--r-- 1 apoll 197609     5585 Jun 21 15:48 config
+-rwxr-xr-x 1 apoll 197609 47859200 Jun 21 15:45 kubectl.exe*
+```
+Um zu schauen, ob kubectl erfolgreich installiert und mit der Config-Datei auf das Dashboard zu kommen, gebt man diesen Befehl ein.
+```shell
+$ kubectl cluster-info
+
+Kubernetes control plane is running at https://10.1.43.13:6443
+KubeDNS is running at https://10.1.43.13:6443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+```
+Die aktuell laufenden Pods (Hosts) sind mit diesem Befehl ersichtlich.
+```shell
+$ kubectl get pods
+
+NAME                             READY   STATUS    RESTARTS   AGE
+eclipse-theia-79dcdc756d-4ckbp   1/1     Running   1          58d
+```
+
+Mit diesem Befehl sehe ich alle Services die auf diesem Kubernetes-Cluster momentan laufen.
+
+```shell
+$ kubectl get svc
+
+NAME            TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+eclipse-theia   LoadBalancer   10.107.23.108   <pending>     3000:32400/TCP   58d
+kubernetes      ClusterIP      10.96.0.1       <none>        443/TCP          58d
+```
+Nun kommt man auf das Dashboard wie folgt; man gebt diesen Befehl im Bash ein und der leitet der 10.43.1.13:6443 aufs localhost:8001.
+
+```shell
+kubectl --kubeconfig config proxy
+```
+Auf das Dashboard greift man über diesen [URL](http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/) an. Danach muss man Token auswählen und den Token, der auf der Homepage des TBZ-VMs (10.43.1.13 unter dem Punkt Cluster-Info > Token) zu finden ist, eingeben.<br>
+![](Bilder/K8s_Dashboard_login.png)
+
+Das Dashboard sieht dann wie folgt aus. ![](/LB2/Bilder/K8s_Dashboard.png)
+
 ## Sicherheit
 ## Testing
 ## Reflexion
