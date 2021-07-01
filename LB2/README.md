@@ -224,7 +224,7 @@ spec:
     ports:
     - containerPort: 8080
 ```
-Um den Pod nun zu deployen gebe ich diesen Befehl ein. Mit dem Befehl `kubectl get pods -o wide` zeige ich alle 
+Um den Pod nun zu deployen gebe ich diesen Befehl ein. Mit dem Befehl `kubectl get pods -o wide` zeige ich alle Dienste.
 
 ```shell
 $ sudo mv calisto-pod.yaml michalis-pod.yaml
@@ -237,7 +237,9 @@ $ kubectl get pods -o wide
 NAME        READY  STATUS    RESTARTS  AGE   IP         NODE             
 michalis-pod 1/1   Running  0         97s   10.244.0.20 m300-13-st18a-cal
 ```
-Nun werde ich über das Deployment mehrere Pods laufen mit dem bestimmten Service
+Nun werde ich über das Deployment mehrere Container in einem Pod laufen. Demnach muss ich den Service, welcher im Pod definiert wird mit einem zusätzlichen File angeben
+
+
  
 
 ## Sicherheit

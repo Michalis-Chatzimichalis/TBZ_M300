@@ -189,18 +189,23 @@ Der Verlauf ist in etwa so. Es gibt ein Master Node, der für das Zentralverwalt
 
 
 ![Abbild](/LB2/Bilder/K8s_Architecture.png)
+
 Auf den Worker Nodes laufen zwei Prozesse;
 * `kubelet`
   * Liest der Health Status der verschiendener Pods heraus
 * `kube-proxy`
   * Leitet allfällige TCP/UDP Ports von und zu den versch. Pods, evtl. vom Internet, der dann via Load Balancer (welcher auf einen von denen Pods als Service lauft) reinkommt.
 
-Node kann entweder phsyisch oder virtuell sein
+Ein **Pod** besteht aus den folgenden Komponenten
+* Docker container mit einem Image
+* Storage 
+* Einzigartige IP-Adresse
+* Variabeln die bei der Laufzeit am Pod gegeben werden
+
+![](/Bilder%20Doku/K8s_Pods.png)
 
 
-K8s -> Nodes -> Pods -> Container
 
-Node ist i.d.R eine VM (master)
-ca. 100 Pods pro Node 
-Container in den Pods
-Um Updaten nimmt man ein Node vom Cluster, ein anderer nimmt die Aufgabe, aktualisiert den und fügt dem am Cluster neu hinzu
+Ein Pod lauft immer auf einem Node und können bis zu 150'000 Pods am einem Node laufen.
+
+![](Bilder%20Doku/K8s_Nodes.png)
