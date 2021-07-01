@@ -116,7 +116,7 @@ docker-compose up -d
 ### 4.3 - docker-compose.yml File
 Im Docker-Compose File werden die 3 Services und zugleich Portainer eingerichtet und mit dem docker-compose up -d Befehl gestartet. Die Container werden der Reihe nach gestartet, bzw. das definierte Image wird vom Docker Hub geholt und danach mit den nötigen Ports und Environment-Variabeln gestartet. Die Environment-Variables sind mehrheitlich Systemanpassungen wie die Zeit
 
-```yml
+```yaml
 version: '3'
 services:
  plex:
