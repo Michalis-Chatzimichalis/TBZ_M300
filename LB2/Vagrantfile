@@ -1,0 +1,59 @@
+Vagrant.configure("2") do |config|
+    config.vm.define "main" do |main|
+        main.vm.box = "ubuntu/focal64"
+        main.vm.hostname = "main01"
+        main.vm.network "private_network", ip: "192.168.100.10"
+        main.vm.network "forwarded_port", guest:443, host:8443, auto_correct: false
+        main.vm.provision "shell", path: "install_microk8s_main.sh"
+        main.vm.provider "virtualbox" do |vb|
+            vb.customize [
+                "modifyvm", :id,
+                "--memory", 1024,
+                "--cpus", 1,
+                "--name", "M300_LB2_microk8s_main",
+            ]
+        end
+    end
+    config.vm.define "worker1" do |worker1|
+        worker1.vm.box = "ubuntu/focal64"
+        worker1.vm.hostname = "worker1"
+        worker1.vm.network "private_network", ip: "192.168.100.11"
+        worker1.vm.provision "shell", path: "install_microk8s_worker.sh"
+        worker1.vm.provider "virtualbox" do |vb|
+            vb.customize [
+                "modifyvm", :id,
+                "--memory", 1024,
+                "--cpus", 1,
+                "--name", "M300_LB2_microk8s_worker1",
+            ]
+        end
+    end
+    config.vm.define "worker2" do |worker2|
+        worker2.vm.box = "ubuntu/focal64"
+        worker2.vm.hostname = "worker2"
+        worker2.vm.network "private_network", ip: "192.168.100.12"
+        worker2.vm.provision "shell", path: "install_microk8s_worker.sh"
+        worker2.vm.provider "virtualbox" do |vb|
+            vb.customize [
+                "modifyvm", :id,
+                "--memory", 1024,
+                "--cpus", 1,
+                "--name", "M300_LB2_microk8s_worker2",
+            ]
+        end
+    end
+    config.vm.define "worker3" do |worker3|
+        worker3.vm.box = "ubuntu/focal64"
+        worker3.vm.hostname = "worker3"
+        worker3.vm.network "private_network", ip: "192.168.100.13"
+        worker3.vm.provision "shell", path: "install_microk8s_worker.sh"
+        worker3.vm.provider "virtualbox" do |vb|
+            vb.customize [
+                "modifyvm", :id,
+                "--memory", 1024,
+                "--cpus", 1,
+                "--name", "M300_LB2_microk8s_worker3",
+            ]
+        end
+    end
+end
