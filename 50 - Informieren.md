@@ -1,9 +1,20 @@
-# Inhaltsverzeichnis
+**<Inhaltsverzeichnis**
+- [Cloud Computing](#cloud-computing)
+  - [IaaS](#iaas)
+  - [PaaS](#paas)
+  - [SaaS](#saas)
+- [Git](#git)
+- [Vagrant](#vagrant)
+  - [Boxen](#boxen)
+  - [Konfiguration](#konfiguration)
+  - [Provisioning](#provisioning)
+  - [Provider](#provider)
+  - [Synchronsierte Ordner](#synchronsierte-ordner)
+- [Packer](#packer)
+- [Docker](#docker)
+- [Kubernetes](#kubernetes)
 
-
-
-## 01 - Cloud Computing
--------------------------
+## Cloud Computing
 Cloud Computing (Rechnerwolke) versteht man die Ausführung von Programmen, die nicht auf dem lokalen Rechner installiert sind, sondern auf einem anderen Rechner, der aus der Ferne (remote) aufgerufen wird.
 Technischer formuliert umschreibt das Cloud Computing den Ansatz, IT-Infrastrukturen (z.B. Rechenkapazität, Datenspeicher, Datensicherheit, Netzkapazitäten oder auch fertige Software) über ein Netz zur Verfügung zu stellen, ohne dass diese auf dem lokalen Rechner installiert sein müssen.
 ### IaaS
@@ -18,10 +29,10 @@ Die verschienden Einsatzzwekce
 | Vorteile                                                                                     | Nachteile                                                                                          |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | Das flexibelste Cloud-Computing-Modell                                                       | Sicherheitsbedrohungen können immer noch vom Host oder anderen virtuellen Maschinen (VMs) ausgehen |
-| Einfache, automatisierte Bereitstellung von Speicher, Netzwerken, Servern und Rechenleistung | Text                                                                                               |
-| Hardware-Käufe können verbrauchsabhängig erfolgen                                            | Text                                                                                               |
-| Volle Kontrolle über die Infrastruktur                                                       | Text                                                                                               |
-| Ressourcen können nach Bedarf gekauft werden (Hochgradig skalierbar)                         | Text                                                                                               |
+| Einfache, automatisierte Bereitstellung von Speicher, Netzwerken, Servern und Rechenleistung |                                                                                                    |
+| Hardware-Käufe können verbrauchsabhängig erfolgen                                            |                                                                                                    |
+| Volle Kontrolle über die Infrastruktur                                                       |                                                                                                    |
+| Ressourcen können nach Bedarf gekauft werden (Hochgradig skalierbar)                         |                                                                                                    |
 
 ### PaaS
 Beim PaaS (Plattform as a Service) erstellt der Entwickler die Anwendung und lädt diese in die Cloud. Diese kümmert sich dann selbst um die Aufteilung auf die eigentlichen Verarbeitungseinheiten. Im Unterschied zu IaaS hat der Benutzer hier keinen direkten Zugriff auf die Recheninstanzen. Er betreibt auch keine virtuellen Server.<br>
@@ -42,11 +53,11 @@ SaaS (Software as a Service) Die Anwendungssicht stellt die abstrakteste Sicht a
 Beispiele dafür sind Google Workspace, Dropbox, Salesforce, Cisco WebEx.
 
 -------
-## 02 - Git
+## Git
 Einige Cheat-Sheets zu Git gibt es [hier](/Images%20Doku/Git_Cheat_Sheet.png)
 
 -------
-## 03 - Vagrant
+## Vagrant
 ### Boxen
 Boxen sind bei Vagrant vorkonfigurierte VMs (Vorlagen). Diese sollen den Prozess der Softwareverteilung und der Entwicklung beschleunigen. Jede Box, die von dem Nutzer benutzt wurde, wird auf dem Computer gespeichert und muss so nicht wieder aus dem Internet geladen werden.
 
@@ -99,7 +110,7 @@ Synchronisierte Ordner ermöglichen es der VM auf Verzeichnisse des Host-Systems
 **Wichtig**: Standardmässig wird das aktuelle Vagrantfile-Verzeichnis in der VM unter /vagrant gemountet. Mit `vagrant reload --provision` kann man die Vagrant-VM mit allfällige Provision-Änderungen neu starten.
 
 --------------
-## 04 - Packer
+## Packer
 Packer ist ein Tool zur **Erstellung von Images** bzw. Boxen für eine Vielzahl von Dynamic Infrastructure Platforms mittels einer Konfigurationsdatei.
 Diese Konfigurationsdatei wird im JSON Format geschrieben und die Erstellung eines darauffolgenden Images wird mit `packer build` angelegt.
 ```json
@@ -146,8 +157,7 @@ Die Builder erstellen ein Image für eine bestimmte dynamische Infrastruktur-Pla
 **Post-processors**\
 Um ein neues Artefakt/Instanz zu erstellen, werden Ergebnisse auf Builders oder Post-Prozessor geholt.
 
-## 05 - Docker
--------
+## Docker
 Hier einige Cheat-Sheet für Docker Kommandos.<br>
 
 ![Cheat-Sheet](Bilder%20Doku/Docker_Cheat_Sheet.png)
@@ -157,14 +167,9 @@ Hier einige Cheat-Sheet für Docker Kommandos.<br>
 
 Ein Cheat-Sheet zur Aufbau der Docker Architektur ![](/Bilder%20Doku/Docker_Architecture.png)
 
+## Kubernetes
 
-
-## 06 - Kubernetes
----------
-
-Kubernetes ist ein Open-Source Programm 
-
-Der Verlauf ist in etwa so. Es gibt ein Master Node, der für das Zentralverwalten für das Kubernetes Cluster und aller Worker Nodes zuständig ist.
+Kubernetes ist ein Open-Source Programm. Der Verlauf ist in etwa so. Es gibt ein Master Node, der für das Zentralverwalten für das Kubernetes Cluster und aller Worker Nodes zuständig ist.
 
 
 ![Abbild](/LB2/Bilder/K8s_Architecture.png)
@@ -188,3 +193,11 @@ Ein **Pod** besteht aus den folgenden Komponenten
 Ein Pod lauft immer auf einem Node und können bis zu 150'000 Pods am einem Node laufen.
 
 ![](Bilder%20Doku/K8s_Nodes.png)
+
+Um einen Container auf einem produktiven Pod zu laufen, müssen 2 Files erstellt werden
+* `Deployment`
+  * Definiert die Erstellung des Pods mit verschiedenster Metadata (`Name des Pods, dazugehörige Label, Update-Einstellungen, Replica-Sets, Image, Ports` u. v. m)
+* `Services`
+  * Um das Deployment File überhaupt erfolgreich zu haben, muss der ausgefühter Service, der im Pod lauft, definiert werden. Metadata wären der `Name des Services`,der `Label`, die `verwendeten Ports` und der `Selector-Keyword`.
+
+
