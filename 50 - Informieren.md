@@ -1,3 +1,7 @@
+# Inhaltsverzeichnis
+
+
+
 ## 01 - Cloud Computing
 -------------------------
 Cloud Computing (Rechnerwolke) versteht man die Ausführung von Programmen, die nicht auf dem lokalen Rechner installiert sind, sondern auf einem anderen Rechner, der aus der Ferne (remote) aufgerufen wird.
@@ -37,22 +41,12 @@ Einsatzzwecken
 SaaS (Software as a Service) Die Anwendungssicht stellt die abstrakteste Sicht auf Cloud-Dienste dar. Hierbei bringt der Benutzer seine Applikation weder in die Cloud ein, noch muss er sich um Skalierbarkeit oder Datenhaltung kümmern. Er nutzt eine bestehende Applikation, die ihm die Cloud nach aussen hin anbietet.
 Beispiele dafür sind Google Workspace, Dropbox, Salesforce, Cisco WebEx.
 
-| Vorteile | Nachteile |
-| -------- | --------- |
-| Text     | Text      |
-| Text     | Text      |
-| Text     | Text      |
-| Text     | Text      |
-| Text     | Text      |
-
 -------
 ## 02 - Git
--------
 Einige Cheat-Sheets zu Git gibt es [hier](/Images%20Doku/Git_Cheat_Sheet.png)
 
 -------
 ## 03 - Vagrant
--------
 ### Boxen
 Boxen sind bei Vagrant vorkonfigurierte VMs (Vorlagen). Diese sollen den Prozess der Softwareverteilung und der Entwicklung beschleunigen. Jede Box, die von dem Nutzer benutzt wurde, wird auf dem Computer gespeichert und muss so nicht wieder aus dem Internet geladen werden.
 
@@ -104,23 +98,8 @@ Synchronisierte Ordner ermöglichen es der VM auf Verzeichnisse des Host-Systems
 ```
 **Wichtig**: Standardmässig wird das aktuelle Vagrantfile-Verzeichnis in der VM unter /vagrant gemountet. Mit `vagrant reload --provision` kann man die Vagrant-VM mit allfällige Provision-Änderungen neu starten.
 
-### Vagrant Share
-Vagrant Share ist ein Plugin, mit dem man seine Vagrant-Umgebung für jeden auf der Welt mit einer Internetverbindung freigeben kann. Es gibt Einem eine URL, die von jedem Gerät auf der Welt, das mit dem Internet verbunden ist, direkt zu der eigenen Vagrant-Umgebung leitet.
-
-#### Einrichtung
-Vagrant benötigt ngrok, also wenn nicht vorhanden bitte ngrok wie [folgt installieren](https://ngrok.com/download).
-
-Nachdem ngrok erfolgreich installiert ist, kann vagrant share mit `vagrant plugin install vagrant-share` installiert werden
-
-Um die eigene Umgebung zu **sharen** gibt man `vagrant share` ein und erhält eine URL. Nun können die Dateien im gesyncten Ordner angepasst werden und die Änderungen sind unter derselbe URL nach einem Refresh einsichtlich.
-
-Mit `^C` beendet man das **sharen**.
-
-**Wichtig**: Vagrant Share sollte man in Dev- oder QA (Quality Assurance)-Umgebungen verwendet werden und ja nicht in produktive Umgebungen.
-
 --------------
 ## 04 - Packer
----------------
 Packer ist ein Tool zur **Erstellung von Images** bzw. Boxen für eine Vielzahl von Dynamic Infrastructure Platforms mittels einer Konfigurationsdatei.
 Diese Konfigurationsdatei wird im JSON Format geschrieben und die Erstellung eines darauffolgenden Images wird mit `packer build` angelegt.
 ```json
@@ -167,7 +146,7 @@ Die Builder erstellen ein Image für eine bestimmte dynamische Infrastruktur-Pla
 **Post-processors**\
 Um ein neues Artefakt/Instanz zu erstellen, werden Ergebnisse auf Builders oder Post-Prozessor geholt.
 
-## Docker
+## 05 - Docker
 -------
 Hier einige Cheat-Sheet für Docker Kommandos.<br>
 
@@ -180,7 +159,7 @@ Ein Cheat-Sheet zur Aufbau der Docker Architektur ![](/Bilder%20Doku/Docker_Arch
 
 
 
-## Kubernetes
+## 06 - Kubernetes
 ---------
 
 Kubernetes ist ein Open-Source Programm 
