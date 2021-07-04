@@ -1,18 +1,15 @@
 ## Beschreibung
-In der LB2 werde ich mittels Docker einen Image einer einfachen Webapplikation erstellen und der dann über Container Orchestrierung (Kubernetes) automatisch bereitstellen. Andere Dienste, wie ein Anaylse Tool oder ein Reverse Proxy sind auch in Bearbeitung/Pilotphase.<br>
+In der LB2 werde ich mittels Docker einen Image einer einfachen Webapplikation erstellen und der dann über Container Orchestrierung (Kubernetes) automatisch bereitstellen.<br>
 
 **Erster Teil**<br>
 Mit diesem Befehl führt man der ersten Teil der LB2 aus und stellt einen einfachen Node.JS Web-App in einem Container bereit.
 ```shell
 docker run --name web_app -p 8080:8080 michalis07/webapp
 ```
-**Zweiter Teil mit Kubernetes**<br>
-Sample-Text
 
 
 **Inhaltsverzeichnis**
 - [Beschreibung](#beschreibung)
-- [Technische Übersicht](#technische-übersicht)
 - [Voraussetzungen](#voraussetzungen)
 - [Funktionen](#funktionen)
 - [Docker](#docker)
@@ -28,11 +25,6 @@ Sample-Text
 - [Testing](#testing)
 - [Reflexion](#reflexion)
 - [Quellen](#quellen)
-
-
-## Technische Übersicht
-![Bild von der Aufstellung]()
-
 
 ## Voraussetzungen
 Die Voraussetzungen fürs folgende Projekt sind folgende:
