@@ -1,15 +1,21 @@
+## Beschreibung
 In der LB2 werde ich mittels Docker einen Image einer einfachen Webapplikation erstellen und der dann über Container Orchestrierung (Kubernetes) automatisch bereitstellen. Andere Dienste, wie ein Anaylse Tool oder ein Reverse Proxy sind auch in Bearbeitung/Pilotphase.<br>
-Mit diesem Befehl 
+
+**Erster Teil**<br>
+Mit diesem Befehl führt man der ersten Teil der LB2 aus und stellt einen einfachen Node.JS Web-App in einem Container bereit.
 ```shell
 docker run --name web_app -p 8080:8080 michalis07/webapp
 ```
+**Zweiter Teil mit Kubernetes**<br>
+Sample-Text
+
 
 **Inhaltsverzeichnis**
-- [- Quellen](#--quellen)
+- [Beschreibung](#beschreibung)
 - [Technische Übersicht](#technische-übersicht)
 - [Voraussetzungen](#voraussetzungen)
 - [Funktionen](#funktionen)
-- [Deklarativer Aufbau](#deklarativer-aufbau)
+- [Docker](#docker)
   - [Vorbereitung](#vorbereitung)
   - [Docker Hub Konto anbinden](#docker-hub-konto-anbinden)
   - [Dockerfile](#dockerfile)
@@ -17,11 +23,12 @@ docker run --name web_app -p 8080:8080 michalis07/webapp
 - [Kubernetes Orchestrierung](#kubernetes-orchestrierung)
   - [Initialisierung und Erste Schritte](#initialisierung-und-erste-schritte)
   - [Nodes und Pods definieren](#nodes-und-pods-definieren)
-- [Sicherheit](#sicherheit)
+  - [Monitoring mit Grafana und Prometheus](#monitoring-mit-grafana-und-prometheus)
+  - [Vagrantfile Cluster](#vagrantfile-cluster)
 - [Testing](#testing)
 - [Reflexion](#reflexion)
 - [Quellen](#quellen)
---------
+
 
 ## Technische Übersicht
 ![Bild von der Aufstellung]()
@@ -36,12 +43,15 @@ Die Voraussetzungen fürs folgende Projekt sind folgende:
 - Docker
   -  Kenntnisse von Vorteil
   -  Docker Hub Account
+-  Kubernetes
+   - Kenntnisse von Vorteil
+   - Genügend Ressourcen
 - Browser
 
 ## Funktionen
 - Die node.js Applikation wird im Docker Image namens **webapp** packetiert und als Container gestartet. Sie stellt eine einfache HTML-Seite auf Port 8080 dar. 
 
-## Deklarativer Aufbau
+## Docker
 ### Vorbereitung
 Zuerst gehe ich auf WireGuard, um das VPN der TBZ-Cloud zu aktivieren. Danach gebe ich folgendes Befehl im Git/Bash ein.
 ```shell
@@ -209,7 +219,6 @@ Um das erste Pod im Verzeichnes `Pods` zu starten, muss das Pod-Manifest deploye
 ```yml
 ## M. Chatzimichalis: getestet am 28.6.2021
 ## Beispiel Pod YAML:
-
 apiVersion: v1
 kind: Pod
 metadata:
@@ -236,14 +245,131 @@ $ kubectl get pods -o wide
 
 NAME        READY  STATUS    RESTARTS  AGE   IP         NODE             
 michalis-pod 1/1   Running  0         97s   10.244.0.20 m300-13-st18a-cal
+``` 
+
+Der Service bekommt eine eigenständige, ansprechbare IP und wird in dem File `TEMP_K8s/cal-kubernetes/Services/michalis-svc.yaml` definiert.
+```yaml
+## M.Chatzimichalis: getestet am 04.07.2021
+## Beispiel SVC-YAML:
+apiVersion: v1
+kind: Service
+metadata:
+  name: michalis-svc
+  labels:
+    app: hello-world-michalis
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    nodePort: 30001
+    protocol: TCP
+  selector:
+    app: web
 ```
-Nun werde ich über das Deployment mehrere Container in einem Pod laufen. Demnach muss ich den Service, welcher im Pod definiert wird mit einem zusätzlichen File angeben
 
+Nun werde ich über das Deployment u.a die Anzahl Pods definieren. Die Datei heisst `michalis-deployment.yml`. Mit `kubectl apply -f michalis-deployment.yml` stelle ich das Deployment-File mit den 6 Pods bereit.
+```yaml
+# Simple deployment used to deploy and manage the app in nigelpoulton/ps-web:1.0
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deploy
+  labels:
+    app: web
+spec:
+  selector:
+    matchLabels:
+      app: web
+  replicas: 6
+  minReadySeconds: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      terminationGracePeriodSeconds: 1
+      containers:
+      - name: hello-pod
+        image: nigelpoulton/getting-started-k8s:1.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+```
+Nun sind meine Pods durch den Befehl `kubectl get pods -o wide` ersichtlich.
+```bash
+$ kubectl get pods -o wide
+NAME                             READY   STATUS    RESTARTS   AGE    IP            NODE                NOMINATED NODE   READINESS GATES
+eclipse-theia-79dcdc756d-4ckbp   1/1     Running   1          65d    10.244.0.19   m300-13-st18a-cal   <none>           <none>
+michalis-pod                     1/1     Running   0          6d6h   10.244.0.20   m300-13-st18a-cal   <none>           <none>
+web-deploy-566bd8fc84-276lc      1/1     Running   0          51s    10.244.0.31   m300-13-st18a-cal   <none>           <none>
+web-deploy-566bd8fc84-6tjn5      1/1     Running   0          51s    10.244.0.32   m300-13-st18a-cal   <none>           <none>
+web-deploy-566bd8fc84-82vx7      1/1     Running   0          51s    10.244.0.30   m300-13-st18a-cal   <none>           <none>
+web-deploy-566bd8fc84-8r6k8      1/1     Running   0          51s    10.244.0.29   m300-13-st18a-cal   <none>           <none>
+web-deploy-566bd8fc84-9gpxg      1/1     Running   0          51s    10.244.0.27   m300-13-st18a-cal   <none>           <none>
+web-deploy-566bd8fc84-bgdhc      1/1     Running   0          51s    10.244.0.28   m300-13-st18a-cal   <none>           <none>
+```
+Im K8s Dashboard sind sie ebenfalls ersichtlich.
 
+ ![Deployment-Metadata](/Bilder%20Doku/K8s_Deployment_Metadata.png)
+
+### Monitoring mit Grafana und Prometheus
+Um mein Cluster mit hilfreichen Dashboards zu überwachen, könnte ich mich auf das GitHub-Projekt vom [carlosedp](https://github.com/carlosedp/cluster-monitoring) hinweisen. 
+
+Auf der TBZ VM werde ich golang installieren.
+```bash
+$ sudo apt install golang-go -y
+$ export PATH=$PATH:$(go env GOPATH)/bin
+$ export GOPATH=$(go env GOPATH)
+```
+Die Repo muss jetzt geklont werden im Verzeichnis `~/TEMP_K8s/`.
+
+```bash
+$ sudo git clone https://github.com/carlosedp/cluster-monitoring.git
+```
+
+Nun ändern wir folgende Werte. Die Master-Node IP-Adresse. Um die Master Node IP zu finden, gebe ich kubectl get node -o wide ein und lese die **Internal-IP** heraus
+```bash
+k3s: {
+    enabled: true,
+    master_ip: ['10.1.43.13'],
+  },
+
+// Domain suffix for the ingresses
+  suffixDomain: '10.1.43.13.nip.io',
  
+// Setting these to false, defaults to emptyDirs.
+  prometheus: true,
+  grafana: true,
+```
+Mit diesem Befehl werden alle nötige Pakete und Abhängigkeiten geladen
+```bash
+$ sudo make vendor
+```
+Leider habe ich einige Fehlermeldungen gekriegt, vermutlich wegen der 1-Node Cluster, den ich führe und habe den Projekt gekappt und somit die Repository mit `sudo rm -rf cluster-monitoring` gelöscht.
 
-## Sicherheit
+### Vagrantfile Cluster
+
+Dieser Versuch einen Vagrantfile mit 1 Master-Node und 3 Worker-Nodes zu erstellen, erlitt auch unter Problematik. Die Files sind da zu finden.
+* [Link zur Vagrantfile](/LB2/Vagrantfile)
+* [Link zur Main-Shell-Script](/LB2/install_microk8s_main.sh)
+* [Link zur Worker-Shell-Script](/LB2/install_microk8s_worker.sh)
+
 ## Testing
-## Reflexion
+
+Der Zugriff auf die Kubernetes Dashboard funktioniert erfolgreich. 
+
+
+## Reflexion 
+
+Die LB2 und konsequente Einführung in der Welt von Container-Orchestration mit Kubernetes fand ich spannend. Es war lehrreich, um diese Technologie kennenzulernen, jedoch fand ich den Einstieg und Implementierung ein bisschen schnell. An diesem Punkt bin ich teilweise schuld, da ich mich zu Hause über alle Aspekte von Kubernetes mehr informieren könnte, jedoch müsste ich die BMS priorisieren. Das Potential, das Kubernetes einem/einer Firma ermöglicht ist enorm und werde sicher in den nächsten paar Monate schauen, dass ich im privaten Umfeld mich tiefer auseinandersetzen kann, sodass ich evtl. die Chance an der IPA packe und einen Dienst mit Kubernetes einrichte und meiner Firma zur Verfügung stelle.
+
+Die Expertise vom Marcel Bernet fand ich bei seiner GitHub-Repository mehr als die Besuche vor-Ort, da ich in den meisten Fällen über die Thematik zu wenig wusste oder mir gar keine Fragen eingefallen sind. 
+
 ## Quellen
+
 Die Beispielsaufgabe mit dem Node.js Applikation besteht von der GitLab Repository vom Marcello Calisto. [Link zur Repository](https://gitlab.com/ser-cal/Container-CAL-webapp_v1/-/tree/master/)

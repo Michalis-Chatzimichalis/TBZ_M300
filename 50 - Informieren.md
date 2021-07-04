@@ -1,4 +1,4 @@
-**<Inhaltsverzeichnis**
+**Inhaltsverzeichnis**
 - [Cloud Computing](#cloud-computing)
   - [IaaS](#iaas)
   - [PaaS](#paas)
@@ -185,6 +185,7 @@ Ein **Pod** besteht aus den folgenden Komponenten
 * Storage 
 * Einzigartige IP-Adresse
 * Variabeln die bei der Laufzeit am Pod gegeben werden
+
 
 ![](/Bilder%20Doku/K8s_Pods.png)
 
