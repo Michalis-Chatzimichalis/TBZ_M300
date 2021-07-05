@@ -316,7 +316,7 @@ Im K8s Dashboard sind sie ebenfalls ersichtlich.
 Um das Image anzupassen, bzw. zu erneuern, gäbe man in der Kommandezeile folgenden Befehl ein.
 
 ```bash
-kubectl set image deployment/web-deploy hello-pod=vivalosbirnos/webapp_one:1.0
+kubectl set image deployment/web-deploy hello-pod=michalis07/webapp:1.0
 ```
 
 Das neue erstellte Replica Set mit den 6 Pods ist mit zu sehen. Im Dashboard ist er ebenfalls zu sehen ![](/Bilder%20Doku/K8s_Update_Image.png)
@@ -340,7 +340,6 @@ Weave Scope ist ein Visualisierungs- und Monitoring-Tool für Docker und Kuberne
 $ cd ~/.kube
 $ kubectl --kubeconfig config port-forward -n weave deployment/weave-scope-app 4040
 ```
-
 
 Auf das Dashboard greiffen wir nun über den Port 4040 drauf, sprich über die URL: `http://localhost:4040/#!/state/{%22topologyId%22:%22containers-by-image%22}`
 
@@ -408,5 +407,3 @@ Die Expertise vom Marcel Bernet fand ich viel mehr bei seiner GitHub-Repository 
 ## Quellen
 
 Die Beispielsaufgabe mit dem Node.js Applikation besteht von der GitLab Repository vom Marcello Calisto. [Link zur Repository](https://gitlab.com/ser-cal/Container-CAL-webapp_v1/-/tree/master/)
-
-Das Image, den ich für das neue Deployen meiner K8s Pods stammt von Silvan Oertli. [Link zur Docker Hub Image](https://hub.docker.com/r/vivalosbirnos/webapp_one)
