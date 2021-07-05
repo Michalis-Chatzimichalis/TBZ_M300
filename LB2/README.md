@@ -20,8 +20,8 @@ docker run --name web_app -p 8080:8080 michalis07/webapp
 - [Kubernetes Orchestrierung](#kubernetes-orchestrierung)
   - [Initialisierung und Erste Schritte](#initialisierung-und-erste-schritte)
   - [Nodes und Pods definieren](#nodes-und-pods-definieren)
-  - [Monitoring mit Grafana und Prometheus](#monitoring-mit-grafana-und-prometheus)
-  - [Vagrantfile Cluster](#vagrantfile-cluster)
+  - [Monitoring mit Grafana und Prometheus - Fehlerhaft](#monitoring-mit-grafana-und-prometheus---fehlerhaft)
+  - [Vagrantfile Cluster - Fehlerhaft](#vagrantfile-cluster---fehlerhaft)
 - [Testing](#testing)
 - [Reflexion](#reflexion)
 - [Quellen](#quellen)
@@ -333,15 +333,26 @@ web-deploy-5db7fb8fdb-lptrs      1/1     Running   0          102s    10.244.0.3
 web-deploy-5db7fb8fdb-mmkbd      1/1     Running   0          2m15s   10.244.0.33   m300-13-st18a-cal   <none>           <none>
 web-deploy-5db7fb8fdb-r8gfh      1/1     Running   0          111s    10.244.0.35   m300-13-st18a-cal   <none>           <none>
 ```
+**Weave Scope**
 
-**Zweite Deployment mit App**
-Die zweite App 
+Weave Scope ist ein Visualisierungs- und Monitoring-Tool für Docker und Kubernetes. Um nun auf das Weavescope Dashboard zu kommen gibt man folgenden Befehl ein
 ```bash
-kubectl create deployment kubernetes-bootcamp --image=gcr.io/google-samples kubernetes-bootcamp:v1
+$ cd ~/.kube
+$ kubectl --kubeconfig config port-forward -n weave deployment/weave-scope-app 4040
 ```
 
 
-### Monitoring mit Grafana und Prometheus
+Auf das Dashboard greiffen wir nun über den Port 4040 drauf, sprich über die URL: `http://localhost:4040/#!/state/{%22topologyId%22:%22containers-by-image%22}`
+
+Wir können hier nun entweder die Docker Images übersichtlich anschauen; 
+![](/Bilder%20Doku/Weave_Scope_Cont_Image.png)
+
+Die Pods sehen wir auch.
+
+![](/Bilder%20Doku/Weave_Scope_Cont_Pods.png)
+
+
+### Monitoring mit Grafana und Prometheus - Fehlerhaft
 Um mein Cluster mit hilfreichen Dashboards zu überwachen, könnte ich mich auf das GitHub-Projekt vom [carlosedp](https://github.com/carlosedp/cluster-monitoring) hinweisen. 
 
 Auf der TBZ VM werde ich golang installieren.
@@ -376,7 +387,7 @@ $ sudo make vendor
 ```
 Leider habe ich einige Fehlermeldungen gekriegt, vermutlich wegen der 1-Node Cluster, den ich führe und habe den Projekt gekappt und somit die Repository mit `sudo rm -rf cluster-monitoring` gelöscht.
 
-### Vagrantfile Cluster
+### Vagrantfile Cluster - Fehlerhaft
 
 Dieser Versuch einen Vagrantfile mit 1 Master-Node und 3 Worker-Nodes zu erstellen, erlitt auch unter Problematik. Die Files sind da zu finden.
 * [Link zur Vagrantfile](/LB2/Vagrantfile)
@@ -392,8 +403,10 @@ Der Zugriff auf die Kubernetes Dashboard funktioniert erfolgreich.
 
 Die LB2 und konsequente Einführung in der Welt von Container-Orchestration mit Kubernetes fand ich spannend. Es war lehrreich, um diese Technologie kennenzulernen, jedoch fand ich den Einstieg und Implementierung ein bisschen schnell. An diesem Punkt bin ich teilweise schuld, da ich mich zu Hause über alle Aspekte von Kubernetes mehr informieren könnte, jedoch müsste ich die BMS priorisieren. Das Potential, das Kubernetes einem/einer Firma ermöglicht ist enorm und werde sicher in den nächsten paar Monate schauen, dass ich im privaten Umfeld mich tiefer auseinandersetzen kann, sodass ich evtl. die Chance an der IPA packe und einen Dienst mit Kubernetes einrichte und meiner Firma zur Verfügung stelle.
 
-Die Expertise vom Marcel Bernet fand ich bei seiner GitHub-Repository mehr als die Besuche vor-Ort, da ich in den meisten Fällen über die Thematik zu wenig wusste oder mir gar keine Fragen eingefallen sind. 
+Die Expertise vom Marcel Bernet fand ich viel mehr bei seiner GitHub-Repository als bei seiner vor-Ort Besuche, da ich in den meisten Fällen über die Thematik zu wenig wusste oder mir gar keine Fragen eingefallen sind. 
 
 ## Quellen
 
 Die Beispielsaufgabe mit dem Node.js Applikation besteht von der GitLab Repository vom Marcello Calisto. [Link zur Repository](https://gitlab.com/ser-cal/Container-CAL-webapp_v1/-/tree/master/)
+
+Das Image, den ich für das neue Deployen meiner K8s Pods stammt von Silvan Oertli. [Link zur Docker Hub Image](https://hub.docker.com/r/vivalosbirnos/webapp_one)
