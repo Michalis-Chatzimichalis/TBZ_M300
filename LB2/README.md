@@ -68,7 +68,7 @@ Der Inhalt der Website ändere ich, indem ich 'nano /views/home.pug' eingebe und
 ![Content Änderung](/LB2/Bilder/Content_Änderung.png)
 
 ### Dockerfile
-Das Dockerfile sieht wie folgt aus.
+Das Dockerfile sieht wie folgt aus. Es soll zuerst den Image node:current-slim nehmen und den Label hinzufügen. Der jetziger Verzeichnis wird im Container /src reinkopiert. Demnach soll im Container zum Verzeichnis src gewechselt werden und npm (Node Package Manager) installiert werden. Port 8080 wird geöffnet und die app.js wird mittels node-Befehl ausgeführt.
 ```dockerfile
 FROM node:current-slim
 
@@ -87,18 +87,16 @@ EXPOSE 8080
 CMD cd /src && node ./app.js
 ```
 
-Ich wechsle wieder im Home-Verzeichnis mit
+Ich wechsle wieder im Home-Verzeichnis mit und erstelle mein Image ab dem Dockerfile im denselben Verzeichnis.
 ```shell
 cd .. 
 docker image build -t michalis07/webapp:1.0 .
 ``` 
-um das Image mit dem Repo-Name michalis07/webapp, mit dem Tag 1.0 und das Content, bzw. das Dockerfile vom jetzigen Verzeichnis zu nehmen.
-
-Mit 
+Das Image lade ich mit docker push [image/tag] auf den Docker Hub hoch. 
 ```shell
 docker image push michalis07/webapp:1.0
 ```
-lade ich das auf der Docker Hub unter mein Account hoch.![](/LB2/Bilder/Docker_Hub_Push.png)
+![](/LB2/Bilder/Docker_Hub_Push.png)
 
 ### Docker Container starten
 Das Docker Container starte ich mit und bekomme die SHA256 ID des Containers.
@@ -258,7 +256,13 @@ spec:
   selector:
     app: web
 ```
+Das Service wird mit dem folgenden Befehl erstellt.
 
+```bash
+kubectl apply -f michalis-svc.yaml
+```
+Im K8s Dashboard ist der unter Service > Services zu finden.
+![](../Bilder%20Doku/K8s_Service.png)
 Nun werde ich über das Deployment u.a die Anzahl Pods definieren. Die Datei heisst `michalis-deployment.yml`. Mit `kubectl apply -f michalis-deployment.yml` stelle ich das Deployment-File mit den 6 Pods bereit.
 ```yaml
 # Simple deployment used to deploy and manage the app in nigelpoulton/ps-web:1.0
@@ -308,6 +312,34 @@ web-deploy-566bd8fc84-bgdhc      1/1     Running   0          51s    10.244.0.28
 Im K8s Dashboard sind sie ebenfalls ersichtlich.
 
  ![Deployment-Metadata](/Bilder%20Doku/K8s_Deployment_Metadata.png)
+
+Um das Image anzupassen, bzw. zu erneuern, gäbe man in der Kommandezeile folgenden Befehl ein.
+
+```bash
+kubectl set image deployment/web-deploy hello-pod=vivalosbirnos/webapp_one:1.0
+```
+
+Das neue erstellte Replica Set mit den 6 Pods ist mit zu sehen. Im Dashboard ist er ebenfalls zu sehen ![](/Bilder%20Doku/K8s_Update_Image.png)
+```bash
+$ kubectl get pods -o wide
+
+NAME                             READY   STATUS    RESTARTS   AGE     IP            NODE                NOMINATED NODE   READINESS GATES
+eclipse-theia-79dcdc756d-4ckbp   1/1     Running   1          65d     10.244.0.19   m300-13-st18a-cal   <none>           <none>
+michalis-pod                     1/1     Running   0          6d22h   10.244.0.20   m300-13-st18a-cal   <none>           <none>
+web-deploy-5db7fb8fdb-57xcd      1/1     Running   0          85s     10.244.0.38   m300-13-st18a-cal   <none>           <none>
+web-deploy-5db7fb8fdb-9jrjs      1/1     Running   0          2m      10.244.0.34   m300-13-st18a-cal   <none>           <none>
+web-deploy-5db7fb8fdb-l5zmt      1/1     Running   0          93s     10.244.0.37   m300-13-st18a-cal   <none>           <none>
+web-deploy-5db7fb8fdb-lptrs      1/1     Running   0          102s    10.244.0.36   m300-13-st18a-cal   <none>           <none>
+web-deploy-5db7fb8fdb-mmkbd      1/1     Running   0          2m15s   10.244.0.33   m300-13-st18a-cal   <none>           <none>
+web-deploy-5db7fb8fdb-r8gfh      1/1     Running   0          111s    10.244.0.35   m300-13-st18a-cal   <none>           <none>
+```
+
+**Zweite Deployment mit App**
+Die zweite App 
+```bash
+kubectl create deployment kubernetes-bootcamp --image=gcr.io/google-samples kubernetes-bootcamp:v1
+```
+
 
 ### Monitoring mit Grafana und Prometheus
 Um mein Cluster mit hilfreichen Dashboards zu überwachen, könnte ich mich auf das GitHub-Projekt vom [carlosedp](https://github.com/carlosedp/cluster-monitoring) hinweisen. 
